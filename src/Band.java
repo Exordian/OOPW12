@@ -16,6 +16,7 @@ public class Band {
 		cal = new Calendar();
 	}
 	
+	// blub
 	/* even more generic, but i think addMember/addSong/addMusicEvent is fine too
 	public <T extends ICalendarEntry> void add(GregorianCalendar date, T entry) {
 		cal.addEvent(date, entry);
