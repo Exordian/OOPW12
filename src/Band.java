@@ -12,6 +12,8 @@ public class Band {
 	// if this calendar gets too big, it should be splitted into one calendar per event
 	private Calendar cal;
 	private String bandName ="";
+	private ArrayList<Location> locationList = new ArrayList<Location>();
+	private int memberCount = 0;
 	
 	public Band(String bandName){
 		cal = new Calendar();
@@ -29,12 +31,22 @@ public class Band {
 	*/
 	
 	/**
+	 * Returns band name.
+	 * 
+	 * @return name
+	 */
+	public String getBandName() {
+		return this.bandName;
+	}
+	
+	/**
 	 * Adds member.
 	 * 
 	 * @param date
 	 * @param member
 	 */
 	public void addMember(GregorianCalendar date, Member member) {
+		this.memberCount++;
 		cal.addEvent(date, member);
 	}
 	
@@ -45,7 +57,17 @@ public class Band {
 	 * @param member
 	 */
 	public void removeMember(GregorianCalendar date, Member member) {
+		this.memberCount--;
 		cal.removeEvent(date, member);
+	}
+	
+	/**
+	 * Returns the current number of Members in the band.
+	 * 
+	 * @return quantity
+	 */
+	public int numberOfMembers(){
+		return this.memberCount;
 	}
 	
 	/**
@@ -64,13 +86,13 @@ public class Band {
 	 * @param date
 	 * @param member
 	 */
-	public void changeMemberStatus(GregorianCalendar date, Member member) {
+	/*public void changeMemberStatus(GregorianCalendar date, Member member) {
 		if (member instanceof PermMember) {
 			member = (TempMember)member;
 		} else {
 			member = (PermMember)member;
 		}
-	}
+	}*/
 	
 	/**
 	 * Adds song.
@@ -117,6 +139,29 @@ public class Band {
 		return output;
 	}
 
+	/**
+	 * Adds a location to the bands available event locations.
+	 * 
+	 * @param loc
+	 */
+	public void addLocation(Location loc) {
+		this.locationList.add(loc);
+	}
+	
+	/**
+	 * Finds an adequate location for the Band to host their event.
+	 * 
+	 * @param capacity
+	 * @return location
+	 */
+	public String findLocation(int capacity) {
+		for (Location l : this.locationList) {
+			if (l.getCapacity() >= capacity)
+				return "First found location for " + this.bandName + ": " + l.getName() +"\n" + l.forWhat();
+		}
+		return "Sorry, there is no location available for your band!";
+	}
+	
 	/**
 	 * Adds music event to calendar.
 	 * 
@@ -189,14 +234,5 @@ public class Band {
 	 */
 	public int moneySituation(GregorianCalendar from, GregorianCalendar to) {
 		return moneyGained(from, to) - moneySpent(from, to);
-	}
-	
-	/**
-	 * Returns band name.
-	 * 
-	 * @return name
-	 */
-	public String getBandName() {
-		return this.bandName;
 	}
 }

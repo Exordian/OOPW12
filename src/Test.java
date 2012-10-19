@@ -17,6 +17,22 @@ public class Test {
 		Band band1 = new Band("Lol");
 		Band band2 = new Band("Rofl");
 		
+		Location graz = new Location("Graz", 4, true, true);
+		Location wien = new Location("Wien", 5,  true, true);
+		Location linz = new Location("Linz", 6,  true, true);
+		Location berlin = new Location("Berlin", 4,  true, true);
+		Location eisenstadt = new Location("Eisenstadt", 5,  false, true);
+		Location hamburg = new Location("Hamburg", 4,  true, false);
+		Location hinterstadl = new Location("Hinterstadl", 2, false, true);
+		
+		band1.addLocation(graz);
+		band1.addLocation(wien);
+		band1.addLocation(linz);
+		band1.addLocation(berlin);
+		band1.addLocation(eisenstadt);
+		band1.addLocation(hamburg);
+		band2.addLocation(hinterstadl);
+		
 		Member m1 = new PermMember("Hans", "0187487894", "Gitarre");
 		Member m2 = new PermMember("Nina", "0198340121", "Klavier");
 		Member m3 = new PermMember("Tim",  "0155555555", "Schlagzeug");
@@ -33,6 +49,10 @@ public class Test {
 		Song s2 = new Song("werwb",300);
 		Song s3 = new Song("bbbbb", 400);
 		Song s4 = new Song("enrbf", 180);
+		
+		System.out.println(band1.findLocation(band1.numberOfMembers())+ "\n");
+		System.out.println(band2.findLocation(band2.numberOfMembers())+ "\n");
+		
 		Concert c1 = new Concert("Wien", new GregorianCalendar(2012,10,12),  900, 300);
 		Concert c2 = new Concert("Graz", new GregorianCalendar(2012,10,20), 1800, 200);
 		Concert c3 = new Concert("Linz", new GregorianCalendar(2011,11, 9), 3000, 500);
@@ -81,7 +101,7 @@ public class Test {
 		}
 		System.out.println(output);
 		
-		band1.changeMemberStatus(new GregorianCalendar(2012, 7,  9), m2);
+		//band1.changeMemberStatus(new GregorianCalendar(2012, 7,  9), m2);
 		
 		members = band1.getMembers(new GregorianCalendar(2012, 10, 20));
 		output = band1.getBandName() + ": \n";
