@@ -16,10 +16,10 @@ public class Test {
 		
 		Band band = new Band();
 		
-		Member m1 = new Member("Hans", "0187487894", "Gitarre");
-		Member m2 = new Member("Nina", "0198340121", "Klavier");
-		Member m3 = new Member("Tim",  "0155555555", "Schlagzeug");
-		Member m4 = new Member("Tom",  "0133333333", "E-Bass");
+		Member m1 = new PermMember("Hans", "0187487894", "Gitarre");
+		Member m2 = new PermMember("Nina", "0198340121", "Klavier");
+		Member m3 = new PermMember("Tim",  "0155555555", "Schlagzeug");
+		Member m4 = new TempMember("Tom",  "0133333333", "E-Bass");
 		band.addMember(new GregorianCalendar(2012, 8, 13), m1); 	//add members
 		band.addMember(new GregorianCalendar(2012, 7,  9), m2);
 		band.addMember(new GregorianCalendar(2007, 9, 20), m3);
@@ -69,6 +69,7 @@ public class Test {
 		}
 		System.out.println(output);
 		band.removeMember(new GregorianCalendar(2012, 9, 31), m3);
+		band.changeMemberStatus(new GregorianCalendar(2012, 7,  9), m2);
 		members = band.getMembers(new GregorianCalendar(2012, 10, 20));
 		output = "";
 		for(Member m : members) {

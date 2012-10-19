@@ -4,7 +4,7 @@
  * @since October 2012
  * 
  */
-public class Member implements ICalendarEntry {
+public abstract class Member implements ICalendarEntry {
 	private final String name;
 	private final String tel;
 	private final String instrument;

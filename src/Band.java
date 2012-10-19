@@ -57,6 +57,20 @@ public class Band {
 	}
 	
 	/**
+	 * Changes the Member Status either to PermMember or to TempMember.
+	 * 
+	 * @param date
+	 * @param member
+	 */
+	public void changeMemberStatus(GregorianCalendar date, Member member) {
+		if (member instanceof PermMember) {
+			member = (TempMember)member;
+		} else {
+			member = (PermMember)member;
+		}
+	}
+	
+	/**
 	 * Adds song.
 	 * 
 	 * @param date
