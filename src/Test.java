@@ -14,16 +14,20 @@ public class Test {
 	 */
 	public static void main(String[] args) {
 		
-		Band band = new Band();
+		Band band1 = new Band("Lol");
+		Band band2 = new Band("Rofl");
 		
 		Member m1 = new PermMember("Hans", "0187487894", "Gitarre");
 		Member m2 = new PermMember("Nina", "0198340121", "Klavier");
 		Member m3 = new PermMember("Tim",  "0155555555", "Schlagzeug");
 		Member m4 = new TempMember("Tom",  "0133333333", "E-Bass");
-		band.addMember(new GregorianCalendar(2012, 8, 13), m1); 	//add members
-		band.addMember(new GregorianCalendar(2012, 7,  9), m2);
-		band.addMember(new GregorianCalendar(2007, 9, 20), m3);
-		band.addMember(new GregorianCalendar(2009, 10, 3), m4);
+		band1.addMember(new GregorianCalendar(2012, 8, 13), m1); 	//add members
+		band1.addMember(new GregorianCalendar(2012, 7,  9), m2);
+		band1.addMember(new GregorianCalendar(2007, 9, 20), m3);
+		band1.addMember(new GregorianCalendar(2009, 10, 3), m4);
+		
+		Member m1b = new PermMember("Jürgen", "0187487858", "Gitarre");
+		band2.addMember(new GregorianCalendar(2012, 9, 5), m1b);
 		
 		Song s1 = new Song("dfdfd", 200);
 		Song s2 = new Song("werwb",300);
@@ -38,48 +42,57 @@ public class Test {
 		Rehearsal r3 = new Rehearsal("Eisenstadt", new GregorianCalendar(2011,8,3),  900, 300);
 		Rehearsal r4 = new Rehearsal("Hamburg", new GregorianCalendar(2010,5,12),  900, 300);
 		
-		band.addSong(new GregorianCalendar(2006, 9, 3), s1);		//add songs
-		band.addSong(new GregorianCalendar(2012, 5, 8), s2);
-		band.addSong(new GregorianCalendar(2008, 4, 6), s3);
-		band.addSong(new GregorianCalendar(2009, 2, 1), s4);
+		band1.addSong(new GregorianCalendar(2006, 9, 3), s1);		//add songs
+		band1.addSong(new GregorianCalendar(2012, 5, 8), s2);
+		band1.addSong(new GregorianCalendar(2008, 4, 6), s3);
+		band1.addSong(new GregorianCalendar(2009, 2, 1), s4);
 		
-		band.addMusicEvent(c1.getDate(), c1); 	//add concerts
-		band.addMusicEvent(c2.getDate(), c2);
-		band.addMusicEvent(c3.getDate(), c3);
-		band.addMusicEvent(c4.getDate(), c4);
-		band.addMusicEvent(r1.getDate(), r1); 	//add rehearsals
-		band.addMusicEvent(r2.getDate(), r2);
-		band.addMusicEvent(r3.getDate(), r3);
-		band.addMusicEvent(r4.getDate(), r4);
-		System.out.println(band.getSongList(new GregorianCalendar(2012, 10, 15)));
+		band1.addMusicEvent(c1.getDate(), c1); 	//add concerts
+		band1.addMusicEvent(c2.getDate(), c2);
+		band1.addMusicEvent(c3.getDate(), c3);
+		band1.addMusicEvent(c4.getDate(), c4);
+		band1.addMusicEvent(r1.getDate(), r1); 	//add rehearsals
+		band1.addMusicEvent(r2.getDate(), r2);
+		band1.addMusicEvent(r3.getDate(), r3);
+		band1.addMusicEvent(r4.getDate(), r4);
+		System.out.println(band1.getSongList(new GregorianCalendar(2012, 10, 15)));
 		
-		band.removeSong(new GregorianCalendar(2012, 5, 8), s2);
-		System.out.println(band.getSongList(new GregorianCalendar(2012, 10, 15)));
+		band1.removeSong(new GregorianCalendar(2012, 5, 8), s2);
+		System.out.println(band1.getSongList(new GregorianCalendar(2012, 10, 15)));
 		
-		ArrayList<MusicEvent> music_events = band.getMusicEvents(new GregorianCalendar(2009,1,1), new GregorianCalendar(2012, 12, 24));
+		ArrayList<MusicEvent> music_events = band1.getMusicEvents(new GregorianCalendar(2009,1,1), new GregorianCalendar(2012, 12, 24));
 		String output = "";
 		for(MusicEvent m : music_events) {
 			output += m.toString() +"\n";
 		}
 		System.out.println(output);
-		ArrayList<Member> members = band.getMembers(new GregorianCalendar(2012, 10, 20));
-		output = "";
+		ArrayList<Member> members = band1.getMembers(new GregorianCalendar(2012, 10, 20));
+		output = band1.getBandName() + ": \n";
 		for(Member m : members) {
 			output += m.toString() +"\n";
 		}
 		System.out.println(output);
-		band.removeMember(new GregorianCalendar(2012, 9, 31), m3);
-		band.changeMemberStatus(new GregorianCalendar(2012, 7,  9), m2);
-		members = band.getMembers(new GregorianCalendar(2012, 10, 20));
-		output = "";
+		band1.removeMember(new GregorianCalendar(2012, 9, 31), m3);
+		
+		ArrayList<Member> members2 = band2.getMembers(new GregorianCalendar(2012, 9, 8));
+			output = band2.getBandName() + ": \n";
+		for(Member m : members2) {
+			output += m.toString() +"\n";
+		}
+		System.out.println(output);
+		
+		band1.changeMemberStatus(new GregorianCalendar(2012, 7,  9), m2);
+		
+		members = band1.getMembers(new GregorianCalendar(2012, 10, 20));
+		output = band1.getBandName() + ": \n";
 		for(Member m : members) {
 			output += m.toString() +"\n";
 		}
 		System.out.println(output);
 		
-		int moneyGained = band.moneyGained(new GregorianCalendar(2009,1,1), new GregorianCalendar(2012, 12, 24));
-		int moneySpent  = band.moneySpent(new GregorianCalendar(2009,1,1), new GregorianCalendar(2012, 12, 24));
-		int moneySituation = band.moneySituation(new GregorianCalendar(2009,1,1), new GregorianCalendar(2012, 12, 24));
+		int moneyGained = band1.moneyGained(new GregorianCalendar(2009,1,1), new GregorianCalendar(2012, 12, 24));
+		int moneySpent  = band1.moneySpent(new GregorianCalendar(2009,1,1), new GregorianCalendar(2012, 12, 24));
+		int moneySituation = band1.moneySituation(new GregorianCalendar(2009,1,1), new GregorianCalendar(2012, 12, 24));
 		System.out.println("gained money: "+moneyGained+ ", spent money: " +moneySpent+ ", money situation: " +moneySituation);
 		
 		

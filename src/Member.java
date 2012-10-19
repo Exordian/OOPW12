@@ -40,12 +40,11 @@ public abstract class Member implements ICalendarEntry {
 	 */
 	public String getInstrument() {
 		return this.instrument;
-	}
+	}	
 	
 	public String toString() {
 		return "Name: " +this.getName()+ 
 		     ", Telefonnr.: " +this.getTelNumber()+ 
 		     ", Instrument: " +this.getInstrument();
 	}
-	
 }

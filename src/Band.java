@@ -11,9 +11,11 @@ public class Band {
 	// atm all events are stored in one single calendar, 
 	// if this calendar gets too big, it should be splitted into one calendar per event
 	private Calendar cal;
+	private String bandName ="";
 	
-	public Band(){
+	public Band(String bandName){
 		cal = new Calendar();
+		this.bandName = bandName;
 	}
 	
 	/* even more generic, but i think addMember/addSong/addMusicEvent is fine too
@@ -188,5 +190,13 @@ public class Band {
 	public int moneySituation(GregorianCalendar from, GregorianCalendar to) {
 		return moneyGained(from, to) - moneySpent(from, to);
 	}
-
+	
+	/**
+	 * Returns band name.
+	 * 
+	 * @return name
+	 */
+	public String getBandName() {
+		return this.bandName;
+	}
 }

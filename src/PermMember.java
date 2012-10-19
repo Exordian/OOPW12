@@ -11,9 +11,6 @@ public class PermMember extends Member {
 	}
 	
 	public String toString() {
-		return "Name: " +this.getName()+ 
-		     ", Telefonnr.: " +this.getTelNumber()+ 
-		     ", Instrument: " +this.getInstrument() + ", permanent Member!";
+		return super.toString() + ", permanent Member!";
 	}
-
 }

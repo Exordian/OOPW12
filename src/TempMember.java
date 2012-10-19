@@ -11,9 +11,7 @@ public class TempMember extends Member {
 	}
 	
 	public String toString() {
-		return "Name: " +this.getName()+ 
-		     ", Telefonnr.: " +this.getTelNumber()+ 
-		     ", Instrument: " +this.getInstrument() + ", temporary Member!";
+		return super.toString() + ", temporary Member!";
 	}
 
 }
