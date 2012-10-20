@@ -10,9 +10,9 @@ import java.util.GregorianCalendar;
 public class Rehearsal extends MusicEvent {
 	private final int rent;
 	
-	public Rehearsal(String place, GregorianCalendar date, int duration, int rent) {
+	public Rehearsal(Location place, GregorianCalendar date, int duration, int rent) {
 		super(place, date, duration);
-		this.rent=rent;
+		this.rent = rent;
 	}
 	
 	/**

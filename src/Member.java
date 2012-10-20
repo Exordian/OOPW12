@@ -4,15 +4,17 @@
  * @since October 2012
  * 
  */
-public abstract class Member implements ICalendarEntry {
+public class Member implements ICalendarEntry {
 	private final String name;
 	private final String tel;
 	private final String instrument;
+	private boolean permanent;
 	
-	public Member(String name, String tel, String instrument) {
+	public Member(String name, String tel, String instrument, boolean permanent) {
 		this.name=name;
 		this.tel=tel;
 		this.instrument=instrument;
+		this.permanent=permanent;
 	}
 	
 	/**
@@ -42,9 +44,30 @@ public abstract class Member implements ICalendarEntry {
 		return this.instrument;
 	}	
 	
+	/**
+	 * Returns the status of the member.
+	 * 
+	 * @return true if permanent, false if temporary
+	 */
+	public boolean getStatus() {
+		return this.permanent;
+	}
+	
+	/**
+	 * Changes the status of the member.
+	 * 
+	 */
+	public void changeStatus() {
+		if	(this.getStatus()==true)
+			this.permanent=false;
+		else
+			this.permanent=true;
+	}
+	
 	public String toString() {
 		return "Name: " +this.getName()+ 
-		     ", Telefonnr.: " +this.getTelNumber()+ 
-		     ", Instrument: " +this.getInstrument();
+		     ", Tel.nr.: " +this.getTelNumber()+ 
+		     ", Instrument: " +this.getInstrument()+ ", is a "
+			 + ((this.getStatus() == true) ? "permanent":"temporary") + " Member";
 	}
 }

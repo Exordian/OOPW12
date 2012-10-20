@@ -7,11 +7,11 @@ import java.util.GregorianCalendar;
  * 
  */
 public class MusicEvent implements ICalendarEntry {
-	private final String place;
+	private final Location place;
 	private final GregorianCalendar date;
 	private final int duration;
 	
-	public MusicEvent(String place, GregorianCalendar date, int duration) {
+	public MusicEvent(Location place, GregorianCalendar date, int duration) {
 		this.place=place;
 		this.date=date;
 		this.duration=duration;
@@ -23,7 +23,7 @@ public class MusicEvent implements ICalendarEntry {
 	 * @return place
 	 */
 	public String getPlace() {
-		return this.place;		
+		return this.place.getName();		
 	}
 	
 	/**

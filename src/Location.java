@@ -36,7 +36,25 @@ public class Location {
 	}
 	
 	/**
-	 * Returns a message whether the location si for rehearsals, concerts or both.
+	 * Returns boolean whether location can be used for concerts.
+	 * 
+	 * @return
+	 */
+	public boolean forConcerts() {
+		return this.concerts;
+	}
+	
+	/**
+	 * Returns boolean whether location can be used for rehearsals.
+	 * 
+	 * @return
+	 */
+	public boolean forRehearsals() {
+		return this.rehearsals;
+	}
+	
+	/**
+	 * Returns a message whether the location is for rehearsals, concerts or both.
 	 * 
 	 * @return message
 	 */

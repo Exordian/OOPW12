@@ -80,19 +80,14 @@ public class Band {
 		return cal.getCalendarEvents(null, date, Member.class);
 	}
 	
-	/**
+	/** TODO
 	 * Changes the Member Status either to PermMember or to TempMember.
 	 * 
-	 * @param date
 	 * @param member
 	 */
-	/*public void changeMemberStatus(GregorianCalendar date, Member member) {
-		if (member instanceof PermMember) {
-			member = (TempMember)member;
-		} else {
-			member = (PermMember)member;
-		}
-	}*/
+	public void changeMemberStatus(Member member) {
+		member.changeStatus();
+	}
 	
 	/**
 	 * Adds song.
@@ -154,12 +149,13 @@ public class Band {
 	 * @param capacity
 	 * @return location
 	 */
-	public String findLocation(int capacity) {
+	public ArrayList<Location> findLocation(int capacity) {
+		ArrayList<Location> temp = new ArrayList<Location>();
 		for (Location l : this.locationList) {
 			if (l.getCapacity() >= capacity)
-				return "First found location for " + this.bandName + ": " + l.getName() +"\n" + l.forWhat();
+				temp.add(l);
 		}
-		return "Sorry, there is no location available for your band!";
+		return temp;
 	}
 	
 	/**
