@@ -26,7 +26,7 @@ public class Rehearsal extends MusicEvent {
 	
 	public String toString() {
 		SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-		return "PROBE! Ort: " + super.getPlace() + ", Datum:" + format.format(super.getDate().getTime())
-				+ ", Dauer:" + super.getDuration() + "s, Miete:" + this.rent;
+		return "REHEARSAL! location: " + super.getPlace() + ", date:" + format.format(super.getDate().getTime())
+				+ ", duration:" + super.getDuration() + "s, rent:" + this.rent;
 	}
 }

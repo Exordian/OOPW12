@@ -97,7 +97,7 @@ public class Test {
 		System.out.println(band1.getSongList(new GregorianCalendar(2012, 10, 15)));
 		
 		ArrayList<MusicEvent> music_events = band1.getMusicEvents(new GregorianCalendar(2009,1,1), new GregorianCalendar(2012, 12, 24));
-		output = "";
+		output = band1.getBandName() + ":"+"\n";
 		for(MusicEvent m : music_events) {
 			output += m.toString() +"\n";
 		}
@@ -126,10 +126,10 @@ public class Test {
 		}
 		System.out.println(output);
 		
-		int moneyGained = band1.moneyGained(new GregorianCalendar(2009,1,1), new GregorianCalendar(2012, 12, 24));
-		int moneySpent  = band1.moneySpent(new GregorianCalendar(2009,1,1), new GregorianCalendar(2012, 12, 24));
-		int moneySituation = band1.moneySituation(new GregorianCalendar(2009,1,1), new GregorianCalendar(2012, 12, 24));
-		System.out.println("gained money: "+moneyGained+ ", spent money: " +moneySpent+ ", money situation: " +moneySituation);
+		double moneyGained = band1.moneyGained(new GregorianCalendar(2009,1,1), new GregorianCalendar(2012, 12, 24));
+		double moneySpent  = band1.moneySpent(new GregorianCalendar(2009,1,1), new GregorianCalendar(2012, 12, 24));
+		double moneySituation = band1.moneySituation(new GregorianCalendar(2009,1,1), new GregorianCalendar(2012, 12, 24));
+		System.out.println(band1.getBandName() + "\ngained money: "+moneyGained+ ", spent money: " +moneySpent+ ", money situation: " +moneySituation); //output: finances
 		
 		
 	}

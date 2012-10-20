@@ -26,8 +26,8 @@ public class Concert extends MusicEvent {
 
 	public String toString() {
 		SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-		return "AUFTRITT! Ort: " + super.getPlace() + ", Datum:" + format.format(super.getDate().getTime())
-				+ ", Dauer:" + super.getDuration() + "s, Miete:" + this.salary;
+		return "CONCERT! location: " + super.getPlace() + ", date:" + format.format(super.getDate().getTime())
+				+ ", duration:" + super.getDuration() + "s, salary:" + this.salary;
 	}
 
 }

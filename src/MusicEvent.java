@@ -36,7 +36,7 @@ public class MusicEvent implements ICalendarEntry {
 	}
 	
 	/**
-	 * Returns the duration of the msuic event.
+	 * Returns the duration of the music event.
 	 * 
 	 * @return duration
 	 */

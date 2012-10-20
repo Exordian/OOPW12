@@ -166,6 +166,11 @@ public class Band {
 	 */
 	public void addMusicEvent(GregorianCalendar date, MusicEvent event) {
 		cal.addEvent(date, event);
+		if (event instanceof Rehearsal) {
+			this.addExpenditure(date, ((Rehearsal)event).getRent());
+		} else {
+			this.addIncome(date, ((Concert)event).getSalary());
+		}
 	}
 
 	/**
@@ -196,15 +201,39 @@ public class Band {
 	 * @param to
 	 * @return Sum of money gained
 	 */
-	public int moneyGained(GregorianCalendar from, GregorianCalendar to) {
-		int sum = 0;
-		for(MusicEvent e : getMusicEvents(from, to)) {
-			if(e instanceof Concert)
-				sum += ((Concert)e).getSalary();
-		}
-		return sum;
+
+	/**
+	 * Adds income.
+	 * 
+	 * @param date
+	 * @param income
+	 */
+	public void addIncome(GregorianCalendar date, double income) {
+		cal.addEvent(date, new Earnings(income, date));
 	}
 	
+	/**
+	 * Adds expenditures.
+	 * 
+	 * @param date
+	 * @param expenditure
+	 */
+	public void addExpenditure(GregorianCalendar date, double expenditure) {
+		cal.addEvent(date, new Spendings(expenditure, date));
+	}
+
+	/**
+	 * Returns the money the band gained with their concerts.
+	 * 
+	 * @param from
+	 * @param to
+	 * @return Sum of money gained
+	 */
+
+	public double moneyGained(GregorianCalendar from, GregorianCalendar to) {
+		return cal.moneyGained(from, to);
+	}
+
 	/**
 	 * Returns the money the band spent on their rehearsals.
 	 * 
@@ -212,15 +241,10 @@ public class Band {
 	 * @param to
 	 * @return Sum of money spent
 	 */
-	public int moneySpent(GregorianCalendar from, GregorianCalendar to) {
-		int sum = 0;
-		for(MusicEvent e : getMusicEvents(from, to)) {
-			if(e instanceof Rehearsal)
-				sum += ((Rehearsal)e).getRent();
-		}
-		return sum;
+	public double moneySpent(GregorianCalendar from, GregorianCalendar to) {
+		return cal.moneySpent(from, to);
 	}
-	
+
 	/**
 	 * Returns the band's money situation.
 	 * 
@@ -228,7 +252,7 @@ public class Band {
 	 * @param to
 	 * @return Difference of money gained and money spent
 	 */
-	public int moneySituation(GregorianCalendar from, GregorianCalendar to) {
+	public double moneySituation(GregorianCalendar from, GregorianCalendar to) {
 		return moneyGained(from, to) - moneySpent(from, to);
 	}
 }

@@ -81,4 +81,44 @@ public class Calendar {
 		return events;
 	}
 	
+	/**
+	 * 
+	 * 
+	 * @param from
+	 * @param to
+	 * @return
+	 */
+	public double moneyGained(GregorianCalendar from, GregorianCalendar to) {
+		double sum = 0;
+		for(Earnings e : getCalendarEvents(from, to, Earnings.class)) {
+			sum += e.getIncome();
+		}
+		return sum;
+	}
+	
+	/**
+	 * 
+	 * 
+	 * @param from
+	 * @param to
+	 * @return
+	 */
+	public double moneySpent(GregorianCalendar from, GregorianCalendar to) {
+		double sum = 0;
+		for(Spendings s : getCalendarEvents(from, to, Spendings.class)) {
+				sum += s.getExpenditure();
+		}
+		return sum;
+	}
+	
+	/**
+	 * 
+	 * 
+	 * @param from
+	 * @param to
+	 * @return
+	 */
+	public double moneySituation(GregorianCalendar from, GregorianCalendar to) {
+		return moneyGained(from, to) - moneySpent(from, to);
+	}	
 }
