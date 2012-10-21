@@ -182,7 +182,14 @@ public class Band {
 	 * @param event
 	 */
 	public void changeMusicEvent(GregorianCalendar date, MusicEvent oldevent, MusicEvent newevent) {
-		// TODO: change Finances?
+		if (oldevent instanceof Concert) {
+			this.removeIncome(date, ((Concert) oldevent).getSalary());
+			this.addIncome(date, ((Concert)newevent).getSalary());
+		} else {
+			this.removeExpenditure(date, ((Rehearsal) oldevent).getRent());
+			this.addExpenditure(date, ((Rehearsal)newevent).getRent());
+		}
+		
 		for(Member m : getMembers(date)) {
 			m.inform("Event changed: " +oldevent+ " to " + newevent);
 		}
@@ -196,10 +203,15 @@ public class Band {
 	 * @param event
 	 */
 	public void removeMusicEvent(GregorianCalendar date, MusicEvent event) {
-		for(Member m : getMembers(date)) {
-			m.inform("Removed Event: " + event);
+		if (event instanceof Concert) {
+			this.removeIncome(date, ((Concert) event).getSalary());
+		} else {
+			this.removeExpenditure(date, ((Rehearsal) event).getRent());
 		}
-		// TODO: change Finances?
+		
+		for(Member m : getMembers(date)) {
+			m.inform("Event removed: " + event);
+		}
 		cal.removeEvent(date, event);
 	}
 	
@@ -208,7 +220,7 @@ public class Band {
 	 * 
 	 * @param from
 	 * @param to
-	 * @return Arraylist with specific music events.
+	 * @return ArrayList with specific music events.
 	 */
 	public ArrayList<MusicEvent> getMusicEvents(GregorianCalendar from, GregorianCalendar to) {
 		return cal.getCalendarEvents(from, to, MusicEvent.class);
@@ -232,6 +244,26 @@ public class Band {
 	 */
 	public void addExpenditure(GregorianCalendar date, double expenditure) {
 		cal.addEvent(date, new Spendings(expenditure, date));
+	}
+	
+	/**
+	 * Removes income.
+	 * 
+	 * @param date
+	 * @param income
+	 */
+	public void removeIncome(GregorianCalendar date, double income) {
+		cal.removeEvent(date, new Earnings(income, date));
+	}
+	
+	/**
+	 * Removes expenditures.
+	 * 
+	 * @param date
+	 * @param expenditure
+	 */
+	public void removeExpenditure(GregorianCalendar date, double expenditure) {
+		cal.removeEvent(date, new Spendings(expenditure, date));
 	}
 
 	/**

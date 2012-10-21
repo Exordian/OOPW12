@@ -65,12 +65,12 @@ public class Member implements ICalendarEntry {
 	}
 	
 	/**
-	 * Inform Member about something
+	 * Inform member about something.
 	 * 
 	 * @param text to inform
 	 */
 	public void inform(String text) {
-		// print to stdout emulates an information messaging service, this could be replaced by an email service, fb notice etc
+		// print to sys.out emulates an information messaging service, this could be replaced by an email service, fb notice etc
 		System.out.println("Member: "+name+" got informed about: "+text);
 	}
 	

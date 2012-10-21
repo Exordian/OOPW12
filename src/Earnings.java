@@ -11,7 +11,12 @@ public class Earnings extends Finances {
 	public Earnings(double income, GregorianCalendar date) {
 		super(income, date);
 	}
-	
+
+	/**
+	 * Returns the amount that was added to the Calendar.
+	 * 
+	 * @return amount
+	 */
 	public double getIncome() {
 		return this.amount;
 	}
