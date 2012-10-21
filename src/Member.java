@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
+
 /**
  * 
  * @author Englisch (e1125164), Lenz (e1126963), Schuster (e1025700) 
@@ -5,6 +8,7 @@
  * 
  */
 public class Member implements ICalendarEntry {
+	private Calendar cal;
 	private final String name;
 	private final String tel;
 	private final String instrument;
@@ -12,6 +16,7 @@ public class Member implements ICalendarEntry {
 	
 	public Member(String name, String tel, String instrument, boolean permanent) {
 		this.name=name;
+		cal = new Calendar();
 		this.tel=tel;
 		this.instrument=instrument;
 		this.permanent=permanent;
@@ -62,6 +67,52 @@ public class Member implements ICalendarEntry {
 			this.permanent=false;
 		else
 			this.permanent=true;
+	}
+	
+	
+	/**
+	 * Adds song.
+	 * 
+	 * @param date
+	 * @param song
+	 */
+	public void addSong(GregorianCalendar date, Song song) {
+		cal.addEvent(date, song);
+	}
+
+	/**
+	 * Removes song.
+	 * 
+	 * @param date
+	 * @param song
+	 */
+	public void removeSong(GregorianCalendar date, Song song) {
+		cal.removeEvent(date, song);
+	}
+	
+	/**
+	 * Returns specific song.
+	 * 
+	 * @param date
+	 * @return 
+	 */
+	public ArrayList<Song> getSongs(GregorianCalendar date) {
+		return cal.getCalendarEvents(null, date, Song.class);
+	}
+
+	/**
+	 * Returns the repertoire at a specific time.
+	 * 
+	 * @param date
+	 * @return ArrayList with songs.
+	 */
+	public String getSongList(GregorianCalendar date) {
+		ArrayList<Song> list= this.getSongs(date);
+		String output = "";
+		for (Song s : list) {
+			output += s.toString() + "\n";
+		}
+		return output;
 	}
 	
 	/**

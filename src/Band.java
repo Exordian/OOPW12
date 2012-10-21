@@ -88,51 +88,6 @@ public class Band {
 	public void changeMemberStatus(Member member) {
 		member.changeStatus();
 	}
-	
-	/**
-	 * Adds song.
-	 * 
-	 * @param date
-	 * @param song
-	 */
-	public void addSong(GregorianCalendar date, Song song) {
-		cal.addEvent(date, song);
-	}
-
-	/**
-	 * Removes song.
-	 * 
-	 * @param date
-	 * @param song
-	 */
-	public void removeSong(GregorianCalendar date, Song song) {
-		cal.removeEvent(date, song);
-	}
-	
-	/**
-	 * Returns specific song.
-	 * 
-	 * @param date
-	 * @return 
-	 */
-	public ArrayList<Song> getSongs(GregorianCalendar date) {
-		return cal.getCalendarEvents(null, date, Song.class);
-	}
-
-	/**
-	 * Returns the repertoire at a specific time.
-	 * 
-	 * @param date
-	 * @return ArrayList with songs.
-	 */
-	public String getSongList(GregorianCalendar date) {
-		ArrayList<Song> list= this.getSongs(date);
-		String output = "";
-		for (Song s : list) {
-			output += s.toString() + "\n";
-		}
-		return output;
-	}
 
 	/**
 	 * Adds a location to the bands available event locations.
