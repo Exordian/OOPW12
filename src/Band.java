@@ -215,15 +215,6 @@ public class Band {
 	}
 
 	/**
-	 * Returns the money the band gained with their concerts.
-	 * 
-	 * @param from
-	 * @param to
-	 * @return Sum of money gained
-	 */
-	// TODO: ?
-
-	/**
 	 * Adds income.
 	 * 
 	 * @param date
