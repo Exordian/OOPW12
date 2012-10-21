@@ -6,7 +6,7 @@ import java.util.GregorianCalendar;
  * @since October 2012
  * 
  */
-public class MusicEvent implements ICalendarEntry {
+abstract public class MusicEvent implements ICalendarEntry {
 	private final Location place;
 	private final GregorianCalendar date;
 	private final int duration;
@@ -34,6 +34,13 @@ public class MusicEvent implements ICalendarEntry {
 	public GregorianCalendar getDate() {
 		return this.date;		
 	}
+	
+	/**
+	 * Returns turnover of the Event
+	 * 
+	 * @return turnover
+	 */
+	abstract public int getTurnover();
 	
 	/**
 	 * Returns the duration of the music event.

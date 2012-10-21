@@ -24,6 +24,15 @@ public class Rehearsal extends MusicEvent {
 		return this.rent;
 	}
 	
+	/**
+	 * Returns the turnover of the event
+	 * 
+	 * @return turnover, mostly negative		
+	 */
+	public int getTurnover() {
+		return -this.getRent();
+	}
+	
 	public String toString() {
 		SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
 		return "REHEARSAL! location: " + super.getPlace() + ", date:" + format.format(super.getDate().getTime())

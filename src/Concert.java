@@ -23,7 +23,16 @@ public class Concert extends MusicEvent {
 	public int getSalary() {
 		return this.salary;
 	}
-
+	
+	/**
+	 * Returns Turnover of the Event, mostly positive at concerts
+	 * 
+	 * @return turnover
+	 */
+	public int getTurnover() {
+		return getSalary();
+	}
+	
 	public String toString() {
 		SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
 		return "CONCERT! location: " + super.getPlace() + ", date:" + format.format(super.getDate().getTime())

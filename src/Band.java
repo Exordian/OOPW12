@@ -166,11 +166,10 @@ public class Band {
 	 */
 	public void addMusicEvent(GregorianCalendar date, MusicEvent event) {
 		cal.addEvent(date, event);
-		if (event instanceof Rehearsal) {
-			this.addExpenditure(date, ((Rehearsal)event).getRent());
-		} else {
-			this.addIncome(date, ((Concert)event).getSalary());
-		}
+		if(event.getTurnover() < 0)
+			this.addExpenditure(date, -event.getTurnover());
+		else
+			this.addIncome(date, event.getTurnover());
 	}
 
 	/**
