@@ -42,7 +42,7 @@ public class Test {
 		band1.addMember(new GregorianCalendar(2007, 9, 20), m3);
 		band1.addMember(new GregorianCalendar(2009, 10, 3), m4);
 		
-		Member m1b = new Member("Jürgen", "0187487858", "Gitarre", true);
+		Member m1b = new Member("JÃ¼rgen", "0187487858", "Gitarre", true);
 		Member m2b = new Member("Jens", "0187492858", "Bass", true);
 		band2.addMember(new GregorianCalendar(2012, 9, 5), m1b);
 		band2.addMember(new GregorianCalendar(2012, 9, 6), m2b);

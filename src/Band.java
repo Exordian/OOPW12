@@ -201,6 +201,7 @@ public class Band {
 	 * @param to
 	 * @return Sum of money gained
 	 */
+	// TODO: ?
 
 	/**
 	 * Adds income.
