@@ -32,6 +32,16 @@ public class Calendar {
 	 * @param date
 	 * @param entry
 	 */
+	public void changeEvent(GregorianCalendar date, ICalendarEntry oldevent, ICalendarEntry newevent){
+		entries.put(date, new CalendarEntry(CalendarEvent.EVENT_CHANGED, oldevent, newevent));		
+	}
+
+	/**
+	 * Removes CalendarEntry.
+	 * 
+	 * @param date
+	 * @param entry
+	 */
 	public void removeEvent(GregorianCalendar date, ICalendarEntry entry){
 		entries.put(date, new CalendarEntry(CalendarEvent.EVENT_REMOVE, entry));		
 	}
@@ -74,8 +84,11 @@ public class Calendar {
 				if(clazz.isInstance(entries.get(date).getEntry())) {
 					if(entries.get(date).getEvent() == CalendarEvent.EVENT_ADD)
 						events.add((T) entries.get(date).getEntry());
-					else
-						events.remove((T) entries.get(date).getEntry());						
+					else if(entries.get(date).getEvent() == CalendarEvent.EVENT_CHANGED) {
+						events.remove((T) entries.get(date).getPrevEntry());
+						events.add((T) entries.get(date).getEntry());
+					} else
+						events.remove((T) entries.get(date).getEntry());
 				}
 		}
 		return events;

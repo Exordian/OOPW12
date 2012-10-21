@@ -6,5 +6,6 @@
  */
 public enum CalendarEvent {
 	EVENT_ADD,
+	EVENT_CHANGED,
 	EVENT_REMOVE
 }

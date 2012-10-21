@@ -7,11 +7,20 @@
 public class CalendarEntry {
 	private final CalendarEvent event;
 	private final ICalendarEntry entry;
+	private final ICalendarEntry prevEntry;
 	
+
 	public CalendarEntry(CalendarEvent event, ICalendarEntry entry) {
+		this(event, entry, null);
+	}
+	
+	public CalendarEntry(CalendarEvent event, ICalendarEntry entry, ICalendarEntry prevEntry) {
 		this.event = event;
 		this.entry = entry;
+		this.prevEntry = prevEntry;
 	}
+	
+	
 
 	/**
 	 * Returns event.
@@ -21,7 +30,7 @@ public class CalendarEntry {
 	public CalendarEvent getEvent() {
 		return event;
 	}
-
+	
 	/**
 	 * Returns Calendar entry.
 	 * 
@@ -30,4 +39,14 @@ public class CalendarEntry {
 	public ICalendarEntry getEntry() {
 		return entry;
 	}
+	
+	/**
+	 * Returns Calendar entry.
+	 * 
+	 * @return entry
+	 */
+	public ICalendarEntry getPrevEntry() {
+		return prevEntry;
+	}
+	
 }

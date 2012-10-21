@@ -166,6 +166,9 @@ public class Band {
 	 */
 	public void addMusicEvent(GregorianCalendar date, MusicEvent event) {
 		cal.addEvent(date, event);
+		for(Member m : getMembers(date)) {
+			m.inform("New Event: " + event);
+		}
 		if(event.getTurnover() < 0)
 			this.addExpenditure(date, -event.getTurnover());
 		else
@@ -173,12 +176,30 @@ public class Band {
 	}
 
 	/**
+	 * Modify specific Event from calendar.
+	 * 
+	 * @param date
+	 * @param event
+	 */
+	public void changeMusicEvent(GregorianCalendar date, MusicEvent oldevent, MusicEvent newevent) {
+		// TODO: change Finances?
+		for(Member m : getMembers(date)) {
+			m.inform("Event changed: " +oldevent+ " to " + newevent);
+		}
+		cal.changeEvent(date, oldevent, newevent);
+	}
+	
+	/**
 	 * Removes specific Event from calendar.
 	 * 
 	 * @param date
 	 * @param event
 	 */
 	public void removeMusicEvent(GregorianCalendar date, MusicEvent event) {
+		for(Member m : getMembers(date)) {
+			m.inform("Removed Event: " + event);
+		}
+		// TODO: change Finances?
 		cal.removeEvent(date, event);
 	}
 	
