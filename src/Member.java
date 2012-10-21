@@ -69,7 +69,6 @@ public class Member implements ICalendarEntry {
 			this.permanent=true;
 	}
 	
-	
 	/**
 	 * Adds song.
 	 * 

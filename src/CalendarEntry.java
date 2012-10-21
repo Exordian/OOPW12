@@ -20,8 +20,6 @@ public class CalendarEntry {
 		this.prevEntry = prevEntry;
 	}
 	
-	
-
 	/**
 	 * Returns event.
 	 * 
