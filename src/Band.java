@@ -142,8 +142,7 @@ public class Band {
 	public int moneyGained(GregorianCalendar from, GregorianCalendar to) {
 		int sum = 0;
 		for(MusicEvent e : getMusicEvents(from, to)) {
-			if(e instanceof Concert)
-				sum += ((Concert)e).getSalary();
+			sum += e.getTurnover() > 0? e.getTurnover() : 0;
 		}
 		return sum;
 	}
@@ -158,8 +157,7 @@ public class Band {
 	public int moneySpent(GregorianCalendar from, GregorianCalendar to) {
 		int sum = 0;
 		for(MusicEvent e : getMusicEvents(from, to)) {
-			if(e instanceof Rehearsal)
-				sum += ((Rehearsal)e).getRent();
+			sum += e.getTurnover() < 0? -e.getTurnover() : 0;
 		}
 		return sum;
 	}
