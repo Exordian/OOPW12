@@ -72,7 +72,7 @@ public class Test {
 		Concert c1 = new Concert(wien, new GregorianCalendar(2012,10,12),  900, 300);
 		Concert c2 = new Concert(graz, new GregorianCalendar(2012,10,20), 1800, 200);
 		Concert c3 = new Concert(linz, new GregorianCalendar(2011,11, 9), 3000, 500);
-		Concert c4 = new Concert(wien, new GregorianCalendar(2005,12,12), 2000, 100);
+		Concert c4 = new Concert(wien, new GregorianCalendar(2011,12,12), 2000, 100);
 		Rehearsal r1 = new Rehearsal(wien, new GregorianCalendar(2012,7,29),  900, 300);
 		Rehearsal r2 = new Rehearsal(berlin, new GregorianCalendar(2012,6,1),  900, 300);
 		Rehearsal r3 = new Rehearsal(eisenstadt, new GregorianCalendar(2011,8,3),  900, 300);
@@ -87,13 +87,22 @@ public class Test {
 		band1.addMusicEvent(c2.getDate(), c2);
 		band1.addMusicEvent(c3.getDate(), c3);
 		band1.addMusicEvent(c4.getDate(), c4);
+		
 		band1.addMusicEvent(r1.getDate(), r1); 	//add rehearsals
 		band1.addMusicEvent(r2.getDate(), r2);
 		band1.addMusicEvent(r3.getDate(), r3);
 		band1.addMusicEvent(r4.getDate(), r4);
+		
+		band1.changeMusicEvent(c4.getDate(), c4, new Concert(linz, c4.getDate(), c4.getDuration(), c4.getSalary()));	//change music event
+		
+		
+		for(MusicEvent m : band1.getMusicEvents(null, null)) {
+			System.out.println("\n" + m);
+		}
+		
 		System.out.println(m3.getSongList(new GregorianCalendar(2012, 10, 15)));
 		
-		m3.removeSong(new GregorianCalendar(2012, 5, 8), s2);
+		m3.removeSong(new GregorianCalendar(2012, 5, 8), s2);						//remove song
 		System.out.println(m3.getSongList(new GregorianCalendar(2012, 10, 15)));
 		
 		System.out.println("Get Full Songlist: ");

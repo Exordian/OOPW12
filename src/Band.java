@@ -137,12 +137,12 @@ public class Band {
 	 * @param event
 	 */
 	public void changeMusicEvent(GregorianCalendar date, MusicEvent oldevent, MusicEvent newevent) {
-		if (oldevent instanceof Concert) {
-			this.removeIncome(date, ((Concert) oldevent).getSalary());
-			this.addIncome(date, ((Concert)newevent).getSalary());
+		if (oldevent.getTurnover() > 0) {
+			this.removeIncome(date, oldevent.getTurnover());
+			this.addIncome(date, newevent.getTurnover());
 		} else {
-			this.removeExpenditure(date, ((Rehearsal) oldevent).getRent());
-			this.addExpenditure(date, ((Rehearsal)newevent).getRent());
+			this.removeExpenditure(date, -oldevent.getTurnover());
+			this.addExpenditure(date, -newevent.getTurnover());
 		}
 		
 		for(Member m : getMembers(date)) {
@@ -158,10 +158,10 @@ public class Band {
 	 * @param event
 	 */
 	public void removeMusicEvent(GregorianCalendar date, MusicEvent event) {
-		if (event instanceof Concert) {
-			this.removeIncome(date, ((Concert) event).getSalary());
+		if (event.getTurnover() > 0) {
+			this.removeIncome(date, event.getTurnover());
 		} else {
-			this.removeExpenditure(date, ((Rehearsal) event).getRent());
+			this.removeExpenditure(date, -event.getTurnover());
 		}
 		
 		for(Member m : getMembers(date)) {
