@@ -97,10 +97,10 @@ public class Test {
 		band1.addMusicEvent(r3.getDate(), r3);
 		band1.addMusicEvent(r4.getDate(), r4);
 		System.out.println("\n");
-		band1.changeMusicEvent(c4.getDate(), c4, new Concert(linz, c4.getDate(), c4.getDuration(), c4.getSalary()));	//change music event TODO
+		band1.changeMusicEvent(c4.getDate(), c4, new Concert(linz, c4.getDate(), c4.getDuration(), c4.getSalary()));	//change music event
 				
 		for(MusicEvent m : band1.getMusicEvents(null, null)) {		//print music events after change
-			System.out.println("\n" + m);
+			System.out.println(m);
 		}
 		System.out.println("\n");
 		
@@ -116,6 +116,7 @@ public class Test {
 		System.out.println("\n" + m3.getName() + " 's Songlist: " + m3.getSongList(new GregorianCalendar(2012, 10, 15))); //single song list
 
 		
+		System.out.println("Events:");
 		ArrayList<MusicEvent> music_events = band1.getMusicEvents(new GregorianCalendar(2009,1,1), new GregorianCalendar(2012, 12, 24)); //music events of band1
 		output = band1.getBandName() + ":"+"\n";
 		for(MusicEvent m : music_events) {

@@ -78,7 +78,7 @@ public class Calendar {
 		ArrayList<T> events = new ArrayList<T>();
 		// we could get a subtree from our treemap, this would increase our performance
 		// at first this wasn't a treemap, we changed it afterwards, so this is a leftover
-		// but it works and currently perforamnce is not a required request ;)
+		// but it works and currently performance is not a required request ;)
 		for(GregorianCalendar date : entries.keySet()) {
 			if(checkDate(date, from, to))
 				if(clazz.isInstance(entries.get(date).getEntry())) {
@@ -93,45 +93,4 @@ public class Calendar {
 		}
 		return events;
 	}
-	
-	/**
-	 * 
-	 * 
-	 * @param from
-	 * @param to
-	 * @return
-	 */
-	public double moneyGained(GregorianCalendar from, GregorianCalendar to) {
-		double sum = 0;
-		for(Earnings e : getCalendarEvents(from, to, Earnings.class)) {
-			sum += e.getIncome();
-		}
-		return sum;
-	}
-	
-	/**
-	 * 
-	 * 
-	 * @param from
-	 * @param to
-	 * @return
-	 */
-	public double moneySpent(GregorianCalendar from, GregorianCalendar to) {
-		double sum = 0;
-		for(Spendings s : getCalendarEvents(from, to, Spendings.class)) {
-				sum += s.getExpenditure();
-		}
-		return sum;
-	}
-	
-	/**
-	 * 
-	 * 
-	 * @param from
-	 * @param to
-	 * @return
-	 */
-	public double moneySituation(GregorianCalendar from, GregorianCalendar to) {
-		return moneyGained(from, to) - moneySpent(from, to);
-	}	
 }

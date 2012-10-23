@@ -11,12 +11,14 @@ public class Band {
 	// atm all events are stored in one single calendar, 
 	// if this calendar gets too big, it should be splitted into one calendar per event
 	private Calendar cal;
+	private Calendar financialcal;
 	private String bandName ="";
 	private ArrayList<Location> locationList = new ArrayList<Location>();
 	private int memberCount = 0;
 	
 	public Band(String bandName){
 		cal = new Calendar();
+		financialcal = new Calendar();
 		this.bandName = bandName;
 	}
 	
@@ -188,7 +190,7 @@ public class Band {
 	 * @param income
 	 */
 	public void addIncome(GregorianCalendar date, double income) {
-		cal.addEvent(date, new Earnings(income, date));
+		financialcal.addEvent(date, new Earnings(income, date));
 	}
 	
 	/**
@@ -198,7 +200,7 @@ public class Band {
 	 * @param expenditure
 	 */
 	public void addExpenditure(GregorianCalendar date, double expenditure) {
-		cal.addEvent(date, new Spendings(expenditure, date));
+		financialcal.addEvent(date, new Spendings(expenditure, date));
 	}
 	
 	/**
@@ -208,7 +210,7 @@ public class Band {
 	 * @param income
 	 */
 	public void removeIncome(GregorianCalendar date, double income) {
-		cal.removeEvent(date, new Earnings(income, date));
+		financialcal.removeEvent(date, new Earnings(income, date));
 	}
 	
 	/**
@@ -218,7 +220,7 @@ public class Band {
 	 * @param expenditure
 	 */
 	public void removeExpenditure(GregorianCalendar date, double expenditure) {
-		cal.removeEvent(date, new Spendings(expenditure, date));
+		financialcal.removeEvent(date, new Spendings(expenditure, date));
 	}
 
 	/**
@@ -230,7 +232,11 @@ public class Band {
 	 */
 
 	public double moneyGained(GregorianCalendar from, GregorianCalendar to) {
-		return cal.moneyGained(from, to);
+		double sum = 0;
+		for(Earnings e : financialcal.getCalendarEvents(from, to, Earnings.class)) {
+			sum += e.getIncome();
+		}
+		return sum;
 	}
 
 	/**
@@ -241,7 +247,11 @@ public class Band {
 	 * @return Sum of money spent
 	 */
 	public double moneySpent(GregorianCalendar from, GregorianCalendar to) {
-		return cal.moneySpent(from, to);
+		double sum = 0;
+		for(Spendings s : financialcal.getCalendarEvents(from, to, Spendings.class)) {
+				sum += s.getExpenditure();
+		}
+		return sum;
 	}
 
 	/**
@@ -254,4 +264,4 @@ public class Band {
 	public double moneySituation(GregorianCalendar from, GregorianCalendar to) {
 		return moneyGained(from, to) - moneySpent(from, to);
 	}
-}
+}	
