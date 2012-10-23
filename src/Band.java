@@ -9,7 +9,7 @@ import java.util.GregorianCalendar;
  */
 public class Band {
 	// atm all events are stored in one single calendar, 
-	// if this calendar gets too big, it should be splitted into one calendar per event
+	// if this calendar gets too big, it should be splitted into one calendar per event -> partly doen with financial calendar
 	private Calendar cal;
 	private Calendar financialcal;
 	private String bandName ="";
