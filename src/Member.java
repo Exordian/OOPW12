@@ -63,10 +63,7 @@ public class Member implements ICalendarEntry {
 	 * 
 	 */
 	public void changeStatus() {
-		if	(this.getStatus()==true)
-			this.permanent=false;
-		else
-			this.permanent=true;
+		this.permanent = !this.getStatus();
 	}
 	
 	/**
@@ -121,7 +118,7 @@ public class Member implements ICalendarEntry {
 	 */
 	public void inform(String text) {
 		// print to sys.out emulates an information messaging service, this could be replaced by an email service, fb notice etc
-		System.out.println("Member: "+name+" got informed about: "+text);
+		//System.out.println("Member: "+name+" got informed about: "+text);
 	}
 	
 	public String toString() {

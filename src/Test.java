@@ -97,7 +97,7 @@ public class Test {
 		band1.addMusicEvent(r3.getDate(), r3);
 		band1.addMusicEvent(r4.getDate(), r4);
 		System.out.println("\n");
-		band1.changeMusicEvent(c4.getDate(), c4, new Concert(linz, c4.getDate(), c4.getDuration(), c4.getSalary()));	//change music event
+		band1.changeMusicEvent(c4.getDate(), c4, new Concert(linz, c4.getDate(), c4.getDuration(), c4.getSalary()));	//change music event TODO
 				
 		for(MusicEvent m : band1.getMusicEvents(null, null)) {		//print music events after change
 			System.out.println("\n" + m);
