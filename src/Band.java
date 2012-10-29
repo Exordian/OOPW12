@@ -24,16 +24,6 @@ public class Band {
 		//returns instance
 	}
 	
-	/* even more generic, but i think addMember/addSong/addMusicEvent is fine too
-	public <T extends ICalendarEntry> void add(GregorianCalendar date, T entry) {
-		cal.addEvent(date, entry);
-	}
-	
-	public <T extends ICalendarEntry> void remove(GregorianCalendar date, T entry) {
-		cal.addEvent(date, entry);
-	}
-	*/
-	
 	public String getBandName() {
 		//band has to be instanced
 		return this.bandName;

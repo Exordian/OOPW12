@@ -14,10 +14,11 @@ public class Test {
 	 */
 	public static void main(String[] args) {
 		/*
-		 Wieso nicht genug bad: wir sind halt gut
-		 Wieso keine errors: siehe oben	 
-		 
-		  
+		 BAD: finances should be abstract, because we only want to use earnings and spendings
+		 BAD: finances could be bound to musicevents, to navigate between them
+		 GOOD: calendar and band are fully independent
+		 GOOD: visibility modifications used properly
+		 ERROR: song should list a group of members which are required to play the song instead of adding songs to only one member
 		 */
 		
 		
