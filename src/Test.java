@@ -13,6 +13,13 @@ public class Test {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		/*
+		 Wieso nicht genug bad: wir sind halt gut
+		 Wieso keine errors: siehe oben	 
+		 
+		  
+		 */
+		
 		
 		Band band1 = new Band("Lol");				//add bands
 		Band band2 = new Band("Rofl");
