@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.GregorianCalendar;
 
 /**
@@ -8,13 +9,13 @@ import java.util.GregorianCalendar;
  */
 public class Earnings extends Finances {
 	
-	public Earnings(double income, GregorianCalendar date) {
+	public Earnings(BigDecimal income, GregorianCalendar date) {
 		// income should be positive, valid date
 		super(income, date);
 		// returns Earnings instance
 	}
 
-	public double getIncome() {
+	public BigDecimal getIncome() {
 		// amount has to be initialized
 		return this.amount;
 		// returns stored amount

@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 
 /**
@@ -50,16 +51,16 @@ public class Calendar {
 	public <T extends ICalendarEntry> ArrayList<T> getCalendarEvents(GregorianCalendar from, GregorianCalendar to, Class<T> clazz) {
 		// clazz must not be null
 		ArrayList<T> events = new ArrayList<T>();
-		for(GregorianCalendar date : entries.keySet()) {
-			if(checkDate(date, from, to))
-				if(clazz.isInstance(entries.get(date).getEntry())) {
-					if(entries.get(date).getEvent() == CalendarEvent.EVENT_ADD)
-						events.add((T) entries.get(date).getEntry());
-					else if(entries.get(date).getEvent() == CalendarEvent.EVENT_CHANGED) {
-						events.remove((T) entries.get(date).getPrevEntry());
-						events.add((T) entries.get(date).getEntry());
+		for(Entry<GregorianCalendar, CalendarEntry> e : entries.entrySet()) {
+			if(checkDate(e.getKey(), from, to))
+				if(clazz.isInstance(e.getValue().getEntry())) {
+					if(e.getValue().getEvent() == CalendarEvent.EVENT_ADD)
+						events.add((T) e.getValue().getEntry());
+					else if(e.getValue().getEvent() == CalendarEvent.EVENT_CHANGED) {
+						events.remove((T) e.getValue().getPrevEntry());
+						events.add((T) e.getValue().getEntry());
 					} else
-						events.remove((T) entries.get(date).getEntry());
+						events.remove((T) e.getValue().getEntry());
 				}
 		}
 		return events;

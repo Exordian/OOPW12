@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.GregorianCalendar;
 
 /**
@@ -31,7 +32,7 @@ abstract public class MusicEvent implements ICalendarEntry {
 		// returns stored date
 	}
 
-	abstract public int getTurnover();
+	abstract public BigDecimal getTurnover();
 	
 	public int getDuration() {
 		// duration has to be initializied

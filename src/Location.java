@@ -38,15 +38,4 @@ public class Location {
 		return this.rehearsals;
 		// returns stored rehearsals
 	}
-	
-	public String forWhat() {
-		if (this.concerts == true && this.rehearsals == true) {
-			return "Available for concerts and rehearsals.";
-		} else if (this.concerts == true) {
-			return "Available for concerts.";
-		} else {
-			return "Available for rehearsals.";
-		}
-		// returns location usage in a readable string
-	}	
 }

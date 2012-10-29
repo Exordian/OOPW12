@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
@@ -8,21 +9,21 @@ import java.util.GregorianCalendar;
  * 
  */
 public class Concert extends MusicEvent {
-	private final int salary;
+	private final BigDecimal salary;
 
-	public Concert(Location place, GregorianCalendar date, int duration, int salary) {
-		// place and date must not be null, duration and salary should be positive 
+	public Concert(Location place, GregorianCalendar date, int duration, BigDecimal salary) {
+		// place, date, salary must not be null, duration and salary should be positive 
 		super(place, date, duration);
 		this.salary=salary;
 		// returns concert instance
 	}
 
-	public int getSalary() {
+	public BigDecimal getSalary() {
 		return this.salary;
 		// returns stored salary
 	}
 	
-	public int getTurnover() {
+	public BigDecimal getTurnover() {
 		return getSalary();
 	}
 	

@@ -89,7 +89,7 @@ public class Member implements ICalendarEntry {
 		return "Name: " +this.getName()+ 
 		     ", Tel.nr.: " +this.getTelNumber()+ 
 		     ", Instrument: " +this.getInstrument()+ ", is a "
-			 + ((this.getStatus() == true) ? "permanent":"temporary") + " Member";
+			 + ((this.getStatus()) ? "permanent":"temporary") + " Member";
 		// returns member in a readable string
 	}
 }

@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
@@ -8,23 +9,23 @@ import java.util.GregorianCalendar;
  * 
  */
 public class Rehearsal extends MusicEvent {
-	private final int rent;
+	private final BigDecimal rent;
 	
-	public Rehearsal(Location place, GregorianCalendar date, int duration, int rent) {
-		// place should not be null, date should be valid, duration should be positive, rent should be positive
+	public Rehearsal(Location place, GregorianCalendar date, int duration, BigDecimal rent) {
+		// place and rent must not be null, date should be valid, duration should be positive, rent should be positive
 		super(place, date, duration);
 		this.rent = rent;
 		// returns rehearsal instance
 	}
 	
-	public int getRent() {
+	public BigDecimal getRent() {
 		// rent has to be initialized
 		return this.rent;
 		// returns stored rent
 	}
 	
-	public int getTurnover() {
-		return -this.getRent();
+	public BigDecimal getTurnover() {
+		return this.getRent().negate();
 		// returns negative rent
 	}
 	

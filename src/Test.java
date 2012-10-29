@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
@@ -66,7 +67,7 @@ public class Test {
 		ArrayList<Location> locationList = band1.findLocation(band1.numberOfMembers());
 		String output = "";
 		for(Location l : locationList) {
-			output += l.getName() + ", " + l.forWhat() + "\n";
+			output += l.getName() + ", " + forWhat(l) + "\n";
 		}
 		System.out.println(output);
 
@@ -74,19 +75,19 @@ public class Test {
 		ArrayList<Location> locationList2 = band2.findLocation(band2.numberOfMembers());
 		output = "";
 		for(Location l : locationList2) {
-			output += l.getName() + ", " + l.forWhat() + "\n";
+			output += l.getName() + ", " + forWhat(l) + "\n";
 		}
 		System.out.println(output);
 		
-		Concert c1 = new Concert(wien, new GregorianCalendar(2012,10,12),  900, 300);		//create concerts
-		Concert c2 = new Concert(graz, new GregorianCalendar(2012,10,20), 1800, 200);
-		Concert c3 = new Concert(linz, new GregorianCalendar(2011,11, 9), 3000, 500);
-		Concert c4 = new Concert(wien, new GregorianCalendar(2011,12,12), 2000, 100);
+		Concert c1 = new Concert(wien, new GregorianCalendar(2012,10,12),  900, new BigDecimal(300));		//create concerts
+		Concert c2 = new Concert(graz, new GregorianCalendar(2012,10,20), 1800, new BigDecimal(200));
+		Concert c3 = new Concert(linz, new GregorianCalendar(2011,11, 9), 3000, new BigDecimal(500));
+		Concert c4 = new Concert(wien, new GregorianCalendar(2011,12,12), 2000, new BigDecimal(100));
 		
-		Rehearsal r1 = new Rehearsal(wien, new GregorianCalendar(2012,7,29),  900, 300);	//create rehearsals
-		Rehearsal r2 = new Rehearsal(berlin, new GregorianCalendar(2012,6,1),  900, 300);
-		Rehearsal r3 = new Rehearsal(eisenstadt, new GregorianCalendar(2011,8,3),  900, 300);
-		Rehearsal r4 = new Rehearsal(hamburg, new GregorianCalendar(2010,5,12),  900, 300);
+		Rehearsal r1 = new Rehearsal(wien, new GregorianCalendar(2012,7,29),  900, new BigDecimal(300));	//create rehearsals
+		Rehearsal r2 = new Rehearsal(berlin, new GregorianCalendar(2012,6,1),  900, new BigDecimal(300));
+		Rehearsal r3 = new Rehearsal(eisenstadt, new GregorianCalendar(2011,8,3),  900, new BigDecimal(300));
+		Rehearsal r4 = new Rehearsal(hamburg, new GregorianCalendar(2010,5,12),  900, new BigDecimal(300));
 		
 		m1.addSong(new GregorianCalendar(2006, 9, 3), s1);		//add songs
 		m3.addSong(new GregorianCalendar(2012, 5, 8), s2);
@@ -154,12 +155,23 @@ public class Test {
 		}
 		System.out.println(output);
 		
-		double moneyGained = band1.moneyGained(new GregorianCalendar(2009,1,1), new GregorianCalendar(2012, 12, 24));			//money situation
-		double moneySpent  = band1.moneySpent(new GregorianCalendar(2009,1,1), new GregorianCalendar(2012, 12, 24));
-		double moneySituation = band1.moneySituation(new GregorianCalendar(2009,1,1), new GregorianCalendar(2012, 12, 24));
+		BigDecimal moneyGained = band1.moneyGained(new GregorianCalendar(2009,1,1), new GregorianCalendar(2012, 12, 24));			//money situation
+		BigDecimal moneySpent  = band1.moneySpent(new GregorianCalendar(2009,1,1), new GregorianCalendar(2012, 12, 24));
+		BigDecimal moneySituation = band1.moneySituation(new GregorianCalendar(2009,1,1), new GregorianCalendar(2012, 12, 24));
 		System.out.println(band1.getBandName() + ":\ngained money: "+moneyGained+ ", spent money: " +moneySpent+ ", money situation: " +moneySituation); //output: finances
 		
 		
 	}
+	public static String forWhat(Location l) {
+		if (l.forConcerts() && l.forRehearsals()) {
+			return "Available for concerts and rehearsals.";
+		} else if (l.forConcerts()) {
+			return "Available for concerts.";
+		} else { // ERROR: should be else if (l.forRehearsal()) and else "location not usable"
+			return "Available for rehearsals.";
+		}
+		// returns location usage in a readable string
+	}	
+
 
 }
