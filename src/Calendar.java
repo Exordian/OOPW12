@@ -14,46 +14,27 @@ public class Calendar {
 	
 	public Calendar(){
 		entries = new TreeMap<GregorianCalendar, CalendarEntry>();
+		// returns calendar instances
 	}
-	
-	/**
-	 * Adds CalendarEntry.
-	 * 
-	 * @param date
-	 * @param entry
-	 */
+
 	public void addEvent(GregorianCalendar date, ICalendarEntry entry){
+		// date and entry must not be null
 		entries.put(date, new CalendarEntry(CalendarEvent.EVENT_ADD, entry));		
+		// entry added to calendar
 	}
 
-	/**
-	 * Removes CalendarEntry.
-	 * 
-	 * @param date
-	 * @param entry
-	 */
 	public void changeEvent(GregorianCalendar date, ICalendarEntry oldevent, ICalendarEntry newevent){
+		// date, oldevent and newevent must not be null
 		entries.put(date, new CalendarEntry(CalendarEvent.EVENT_CHANGED, oldevent, newevent));		
+		// entry changed in calendar
 	}
 
-	/**
-	 * Removes CalendarEntry.
-	 * 
-	 * @param date
-	 * @param entry
-	 */
 	public void removeEvent(GregorianCalendar date, ICalendarEntry entry){
+		// date and entry must not be null
 		entries.put(date, new CalendarEntry(CalendarEvent.EVENT_REMOVE, entry));		
+		// entry removed from calendar
 	}
-	
-	/**
-	 * Checks...
-	 * 
-	 * @param date
-	 * @param from
-	 * @param to
-	 * @return boolean for getCalendarEvents()
-	 */
+
 	private boolean checkDate(GregorianCalendar date, GregorianCalendar from, GregorianCalendar to) {
 		if(from == null && to == null)
 			return true;
@@ -65,20 +46,10 @@ public class Calendar {
 			return (date.before(to) && date.after(from)) || ((date.compareTo(to) == 0) || (date.compareTo(from) == 0));
 	}
 
-	/**
-	 * Returns a list with Calendar entries.
-	 * 
-	 * @param from
-	 * @param to
-	 * @param clazz
-	 * @return ArrayList with calendar entries
-	 */
 	@SuppressWarnings("unchecked")
 	public <T extends ICalendarEntry> ArrayList<T> getCalendarEvents(GregorianCalendar from, GregorianCalendar to, Class<T> clazz) {
+		// clazz must not be null
 		ArrayList<T> events = new ArrayList<T>();
-		// we could get a subtree from our treemap, this would increase our performance
-		// at first this wasn't a treemap, we changed it afterwards, so this is a leftover
-		// but it works and currently performance is not a required request ;)
 		for(GregorianCalendar date : entries.keySet()) {
 			if(checkDate(date, from, to))
 				if(clazz.isInstance(entries.get(date).getEntry())) {
@@ -92,5 +63,6 @@ public class Calendar {
 				}
 		}
 		return events;
+		// returns list of events
 	}
 }

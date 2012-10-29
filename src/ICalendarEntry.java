@@ -5,5 +5,4 @@
  * 
  */
 public interface ICalendarEntry {
-	//Interface for calendar entries
 }

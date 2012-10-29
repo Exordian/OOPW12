@@ -15,110 +15,74 @@ public class Member implements ICalendarEntry {
 	private boolean permanent;
 	
 	public Member(String name, String tel, String instrument, boolean permanent) {
+		// name, tel and instrument shouldnt be empty or null
 		this.name=name;
 		cal = new Calendar();
 		this.tel=tel;
 		this.instrument=instrument;
 		this.permanent=permanent;
+		// returns member instance
 	}
 	
-	/**
-	 * Returns the name of the member.
-	 * 
-	 * @return name
-	 */
 	public String getName() {
+		// name has to be initializied
 		return this.name;
+		// returns stored name
 	}
-	
-	/**
-	 * Returns the telephone number of the member.
-	 * 
-	 * @return telephone number
-	 */
+
 	public String getTelNumber() {
+		// tel has to be initializied
 		return this.tel;
+		// returns stored tel
 	}
 	
-	/**
-	 * Returns the instrument the member is playing.
-	 * 
-	 * @return instrument
-	 */
 	public String getInstrument() {
+		// intrument has to be initializied
 		return this.instrument;
+		// returns stored instrument
 	}	
-	
-	/**
-	 * Returns the status of the member.
-	 * 
-	 * @return true if permanent, false if temporary
-	 */
+
 	public boolean getStatus() {
 		return this.permanent;
+		// returns stored permanent
 	}
-	
-	/**
-	 * Changes the status of the member.
-	 * 
-	 */
+
 	public void changeStatus() {
 		this.permanent = !this.getStatus();
+		// status toggled
 	}
 	
-	/**
-	 * Adds song.
-	 * 
-	 * @param date
-	 * @param song
-	 */
 	public void addSong(GregorianCalendar date, Song song) {
+		// date and song must not be null
 		cal.addEvent(date, song);
+		// song added to calendar
 	}
 
-	/**
-	 * Removes song.
-	 * 
-	 * @param date
-	 * @param song
-	 */
 	public void removeSong(GregorianCalendar date, Song song) {
+		// date and song must not be null
 		cal.removeEvent(date, song);
+		// song removed from calendar
 	}
 	
-	/**
-	 * Returns specific song.
-	 * 
-	 * @param date
-	 * @return 
-	 */
 	public ArrayList<Song> getSongs(GregorianCalendar date) {
+		// date must not be null and should be valid
 		return cal.getCalendarEvents(null, date, Song.class);
+		// returns arraylist of memer songs
 	}
 
-	/**
-	 * Returns the repertoire at a specific time.
-	 * 
-	 * @param date
-	 * @return ArrayList with songs.
-	 */
 	public String getSongList(GregorianCalendar date) {
+		// date must not be null
 		ArrayList<Song> list= this.getSongs(date);
 		String output = "";
 		for (Song s : list) {
 			output += s.toString() + "\n";
 		}
 		return output;
+		// returns songlist in a readable string
 	}
 	
-	/**
-	 * Inform member about something.
-	 * 
-	 * @param text to inform
-	 */
 	public void inform(String text) {
-		// print to sys.out emulates an information messaging service, this could be replaced by an email service, fb notice etc
-		//System.out.println("Member: "+name+" got informed about: "+text);
+		// text shoulnt be empty or null
 	}
 	
 	public String toString() {
@@ -126,5 +90,6 @@ public class Member implements ICalendarEntry {
 		     ", Tel.nr.: " +this.getTelNumber()+ 
 		     ", Instrument: " +this.getInstrument()+ ", is a "
 			 + ((this.getStatus() == true) ? "permanent":"temporary") + " Member";
+		// returns member in a readable string
 	}
 }

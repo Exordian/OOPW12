@@ -11,40 +11,32 @@ public class CalendarEntry {
 	
 
 	public CalendarEntry(CalendarEvent event, ICalendarEntry entry) {
+		// should only be used if event is not event_changed
 		this(event, entry, null);
+		// returns calendarentry instances
 	}
 	
 	public CalendarEntry(CalendarEvent event, ICalendarEntry entry, ICalendarEntry prevEntry) {
+		// event, entry must not be null, prevEntry must not be null if event = event_changed
 		this.event = event;
 		this.entry = entry;
 		this.prevEntry = prevEntry;
+		// returns calendarentry instances
 	}
-	
-	/**
-	 * Returns event.
-	 * 
-	 * @return event
-	 */
+
 	public CalendarEvent getEvent() {
 		return event;
+		// returns stored event
 	}
-	
-	/**
-	 * Returns Calendar entry.
-	 * 
-	 * @return entry
-	 */
+
 	public ICalendarEntry getEntry() {
 		return entry;
+		// returns stored entry
 	}
-	
-	/**
-	 * Returns Calendar entry.
-	 * 
-	 * @return entry
-	 */
+
 	public ICalendarEntry getPrevEntry() {
 		return prevEntry;
+		// returns stored preEntry
 	}
 	
 }

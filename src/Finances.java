@@ -12,16 +12,22 @@ public class Finances implements ICalendarEntry {
 	private final GregorianCalendar date;
 	
 	public Finances(double amount, GregorianCalendar date) {
+		// date must be valid and amount should be positive
 		this.amount = amount;
 		this.date = date;
+		// returns Finances instance
 	}
 	
 	public GregorianCalendar getDate() {
+		// date has to be initialized
 		return this.date;
+		// returns stored date
 	}
 	
 	public double getAmount() {
+		// amount has to be initialized
 		return this.amount;
+		// returns stored amount
 	}
 	
 }

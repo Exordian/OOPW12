@@ -11,53 +11,34 @@ public class Location {
 	private boolean rehearsals;
 	
 	public Location(String name, int capacity, boolean concerts, boolean rehearsals) {
+		// name must not be null and should not be empty, capacity should be positive, concerts or rehearsals - at least one of them should be true
 		this.name = name;
 		this.capacity = capacity;
 		this.concerts = concerts;
 		this.rehearsals = rehearsals;
+		// returns location instance
 	}
 	
-	/**
-	 * Returns name of the location.
-	 * 
-	 * @return name
-	 */
 	public String getName() {
 		return this.name;
+		// returns stored name
 	}
 	
-	/**
-	 * Returns capacity of the location.
-	 * 
-	 * @return capacity
-	 */
 	public int getCapacity() {
 		return this.capacity;
+		// returns stored capacity
 	}
 	
-	/**
-	 * Returns boolean whether location can be used for concerts.
-	 * 
-	 * @return
-	 */
 	public boolean forConcerts() {
 		return this.concerts;
+		// returns stored concerts
 	}
 	
-	/**
-	 * Returns boolean whether location can be used for rehearsals.
-	 * 
-	 * @return
-	 */
 	public boolean forRehearsals() {
 		return this.rehearsals;
+		// returns stored rehearsals
 	}
 	
-	/**
-	 * Returns a message whether the location is for rehearsals, concerts or both.
-	 * 
-	 * @return message
-	 */
 	public String forWhat() {
 		if (this.concerts == true && this.rehearsals == true) {
 			return "Available for concerts and rehearsals.";
@@ -66,5 +47,6 @@ public class Location {
 		} else {
 			return "Available for rehearsals.";
 		}
+		// returns location usage in a readable string
 	}	
 }

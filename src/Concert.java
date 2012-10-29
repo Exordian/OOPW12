@@ -11,24 +11,17 @@ public class Concert extends MusicEvent {
 	private final int salary;
 
 	public Concert(Location place, GregorianCalendar date, int duration, int salary) {
+		// place and date must not be null, duration and salary should be positive 
 		super(place, date, duration);
 		this.salary=salary;
+		// returns concert instance
 	}
 
-	/**
-	 * Returns salary.
-	 * 
-	 * @return salary
-	 */
 	public int getSalary() {
 		return this.salary;
+		// returns stored salary
 	}
 	
-	/**
-	 * Returns Turnover of the Event, mostly positive at concerts
-	 * 
-	 * @return turnover
-	 */
 	public int getTurnover() {
 		return getSalary();
 	}
@@ -37,6 +30,7 @@ public class Concert extends MusicEvent {
 		SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
 		return "CONCERT! location: " + super.getPlace() + ", date:" + format.format(super.getDate().getTime())
 				+ ", duration:" + super.getDuration() + "s, salary:" + this.salary;
+		// returns concert in a readable string
 	}
 
 }

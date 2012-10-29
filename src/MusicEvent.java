@@ -12,43 +12,31 @@ abstract public class MusicEvent implements ICalendarEntry {
 	private final int duration;
 	
 	public MusicEvent(Location place, GregorianCalendar date, int duration) {
+		// place should not be null, date should be valid, duration should be positive
 		this.place=place;
 		this.date=date;
 		this.duration=duration;
+		// returns music event
 	}
 	
-	/**
-	 * Returns place of the music event.
-	 * 
-	 * @return place
-	 */
 	public String getPlace() {
-		return this.place.getName();		
+		// place has to be initializied
+		return this.place.getName();
+		// returns place name
 	}
-	
-	/**
-	 * Returns date of the music event.
-	 * 
-	 * @return date
-	 */	
+
 	public GregorianCalendar getDate() {
+		// date has to be initializied
 		return this.date;		
+		// returns stored date
 	}
-	
-	/**
-	 * Returns turnover of the Event
-	 * 
-	 * @return turnover
-	 */
+
 	abstract public int getTurnover();
 	
-	/**
-	 * Returns the duration of the music event.
-	 * 
-	 * @return duration
-	 */
 	public int getDuration() {
+		// duration has to be initializied
 		return this.duration;		
+		// returns stored duration
 	}
 	
 }

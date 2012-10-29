@@ -9,16 +9,15 @@ import java.util.GregorianCalendar;
 public class Earnings extends Finances {
 	
 	public Earnings(double income, GregorianCalendar date) {
+		// income should be positive, valid date
 		super(income, date);
+		// returns Earnings instance
 	}
 
-	/**
-	 * Returns the amount that was added to the Calendar.
-	 * 
-	 * @return amount
-	 */
 	public double getIncome() {
+		// amount has to be initialized
 		return this.amount;
+		// returns stored amount
 	}
 
 }

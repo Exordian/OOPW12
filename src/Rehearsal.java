@@ -11,31 +11,28 @@ public class Rehearsal extends MusicEvent {
 	private final int rent;
 	
 	public Rehearsal(Location place, GregorianCalendar date, int duration, int rent) {
+		// place should not be null, date should be valid, duration should be positive, rent should be positive
 		super(place, date, duration);
 		this.rent = rent;
+		// returns rehearsal instance
 	}
 	
-	/**
-	 * Returns the rent of the rehearsal place.
-	 * 
-	 * @return rent
-	 */
 	public int getRent() {
+		// rent has to be initialized
 		return this.rent;
+		// returns stored rent
 	}
 	
-	/**
-	 * Returns the turnover of the event
-	 * 
-	 * @return turnover, mostly negative		
-	 */
 	public int getTurnover() {
 		return -this.getRent();
+		// returns negative rent
 	}
 	
 	public String toString() {
 		SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
 		return "REHEARSAL! location: " + super.getPlace() + ", date:" + format.format(super.getDate().getTime())
 				+ ", duration:" + super.getDuration() + "s, rent:" + this.rent;
+		// returns rehearsal in a readable string
+
 	}
 }
