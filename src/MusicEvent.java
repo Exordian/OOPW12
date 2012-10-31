@@ -21,13 +21,13 @@ abstract public class MusicEvent implements ICalendarEntry {
 	}
 	
 	public String getPlace() {
-		// place has to be initializied
+		// place has to be initialized
 		return this.place.getName();
 		// returns place name
 	}
 
 	public GregorianCalendar getDate() {
-		// date has to be initializied
+		// date has to be initialized
 		return this.date;		
 		// returns stored date
 	}
@@ -35,7 +35,7 @@ abstract public class MusicEvent implements ICalendarEntry {
 	abstract public BigDecimal getTurnover();
 	
 	public int getDuration() {
-		// duration has to be initializied
+		// duration has to be initialized
 		return this.duration;		
 		// returns stored duration
 	}
