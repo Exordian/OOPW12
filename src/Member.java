@@ -15,7 +15,7 @@ public class Member implements ICalendarEntry {
 	private boolean permanent;
 	
 	public Member(String name, String tel, String instrument, boolean permanent) {
-		// name, tel and instrument should not be empty or null
+		// name, tel and instrument != (empty or null)
 		this.name=name;
 		cal = new Calendar();
 		this.tel=tel;
@@ -53,25 +53,25 @@ public class Member implements ICalendarEntry {
 	}
 	
 	public void addSong(GregorianCalendar date, Song song) {
-		// date and song must not be null
+		// date and song != null
 		cal.addEvent(date, song);
 		// song added to calendar
 	}
 
 	public void removeSong(GregorianCalendar date, Song song) {
-		// date and song must not be null
+		// date and song != null
 		cal.removeEvent(date, song);
 		// song removed from calendar
 	}
 	
 	public ArrayList<Song> getSongs(GregorianCalendar date) {
-		// date must not be null and should be valid
+		// date != null, date is valid
 		return cal.getCalendarEvents(null, date, Song.class);
 		// returns arraylist of member songs
 	}
 
 	public String getSongList(GregorianCalendar date) {
-		// date must not be null
+		// date != null
 		ArrayList<Song> list= this.getSongs(date);
 		String output = "";
 		for (Song s : list) {
@@ -82,7 +82,7 @@ public class Member implements ICalendarEntry {
 	}
 	
 	public void inform(String text) {
-		// text shoul not be empty or null
+		// text != (empty or null)
 	}
 	
 	public String toString() {

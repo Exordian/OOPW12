@@ -18,87 +18,87 @@ public class Band {
 	private int memberCount = 0;
 	
 	public Band(String bandName){
-		//bandName must not be null
 		cal = new Calendar();
 		financialcal = new Calendar();
 		this.bandName = bandName;
-		//returns instance
 	}
 	
 	public String getBandName() {
-		//band has to be instanced
 		return this.bandName;
-		//return band<name
+		//returns band name
 	}
 	
 	public void addMember(GregorianCalendar date, Member member) {
-		//calendar, member and band has to be instanced; memberCount has to be initialized
+		//calendar, member have to be instanced; memberCount >= 0
+		//cal != null
 		this.memberCount++;
 		cal.addEvent(date, member);
-		//adds member to calendar and increments member count
+		//member has been added to calendar and member count has been incremented
 	}
 	
 	public void removeMember(GregorianCalendar date, Member member) {
-		//calendar, member and band has to be instanced; memberCount has to be initialized
+		//calendar, member have to be instanced; memberCount >= 0
+		//cal != null
 		this.memberCount--;
 		cal.removeEvent(date, member);
-		//removes member from calendar and decrements member count
+		//member has been removed from calender and member count has been decremented
 	}
 
 	public int numberOfMembers(){
 		//memberCount has to be initialized, therefore a instance of band must exist
-		return this.memberCount;
+		return this.memberCount; //memberCount >= 0
 		//returns member count
 	}
 	
 	public ArrayList<Member> getMembers(GregorianCalendar date) {
-		//calendar and member has to be instanced
+		//calendar, member have to be instanced
+		//cal != null
 		return cal.getCalendarEvents(null, date, Member.class);
+		//neither of the elements is null
 		//returns an ArrayList with the members of the band on a specific date
 	}
 	
 	public void changeMemberStatus(Member member) {
-		//band and member has to be instanced
+		//member has to be instanced
 		member.changeStatus();
-		//changes the member status either to PermMember or to TempMember
+		//member status has been changed either to PermMember or to TempMember
 	}
 
 	public void addLocation(Location loc) {
-		//locations and band has to be instanced
+		//location has to be instanced
 		this.locationList.add(loc);
-		//adds a location that is available to the bands
+		//location which is available to bands has been added
 	}
 	
 	public ArrayList<Location> findLocation(int capacity) {
-		//locations and band has to be instanced; capacity has to be initialized
+		//location has to be instanced; capacity has to be initialized
 		ArrayList<Location> temp = new ArrayList<Location>();
 		for (Location l : this.locationList) {
 			//locationList has to exist
 			if (l.getCapacity() >= capacity)
-				//l.getCapacity() has to be int
 				temp.add(l);
 		}
 		return temp;
-		//finds an adequate location for the Band to host their event
+		//adequate location for the band to host their event has been found
 	}
 	
 	public void addMusicEvent(GregorianCalendar date, MusicEvent event) {
-		//calendar, musicEvent and band must be instanced
+		//calendar, musicEvent have to be instanced
+		//cal != null, financialcal != 0
 		cal.addEvent(date, event);
 		for(Member m : getMembers(date)) {
-			//member has to be instanced
 			m.inform("New Event: " + event);
 		}
 		if(event.getTurnover().doubleValue() < 0)
-			//getTurnover() has to return an int
 			this.addExpenditure(date, event.getTurnover().negate());
 		else
 			this.addIncome(date, event.getTurnover());
-		//adds music event to calendar and adds expenditures or income to the financial calendar
+		//music event has been added to calendar and expenditures/income has been added to financial calendar
 	}
 
 	public void changeMusicEvent(GregorianCalendar date, MusicEvent oldevent, MusicEvent newevent) {
-		//calendar, musicEvent and band must be instanced
+		//calendar, musicEvent have to be instanced
+		//cal != null, financialcal != 0
 		if (oldevent.getTurnover().doubleValue() > 0) {
 			this.removeIncome(date, oldevent.getTurnover());
 			this.addIncome(date, newevent.getTurnover());
@@ -107,15 +107,15 @@ public class Band {
 			this.addExpenditure(date, newevent.getTurnover().negate());
 		}		
 		for(Member m : getMembers(date)) {
-			//member must not be null
 			m.inform("Event changed: " +oldevent+ " to " + newevent);
 		}
 		cal.changeEvent(date, oldevent, newevent);
-		//modifies specific event from calendar and changes finances from finance calendar
+		//specific event has been modified from calendar and finances from financial calendar has been changed
 	}
 	
 	public void removeMusicEvent(GregorianCalendar date, MusicEvent event) {
-		//calendar, musicEvent and band must be instanced
+		//calendar, musicEvent have to be instanced
+		//cal != null
 		if (event.getTurnover().doubleValue() > 0) {
 			this.removeIncome(date, event.getTurnover());
 		} else {
@@ -123,45 +123,50 @@ public class Band {
 		}
 		
 		for(Member m : getMembers(date)) {
-			//member must not be null
 			m.inform("Event removed: " + event);
 		}
 		cal.removeEvent(date, event);
-		//removes specific event from calendar and removes finances from finance calendar
+		//specific event has been removed from calendar and finances has been removed from finance calendar
 	}
 	
 	public ArrayList<MusicEvent> getMusicEvents(GregorianCalendar from, GregorianCalendar to) {
-		//calendar, musicEvent and band must be instanced
+		//calendar, musicEvent have to be instanced
+		//cal != null
 		return cal.getCalendarEvents(from, to, MusicEvent.class);
 		//returns music events from a specific time to a specific time
 	}
 
 	public void addIncome(GregorianCalendar date, BigDecimal income) {
-		//band and finance calendar has to be instanced; income must be positive
+		//finance calendar has to be instanced; income >= 0
+		//financialcal != null
 		financialcal.addEvent(date, new Earnings(income, date));
-		//adds income to finance calendar
+		//income has been added to finance calendar
 	}
 	
 	public void addExpenditure(GregorianCalendar date, BigDecimal expenditure) {
-		//band and finance calendar has to be instanced, expenditure must be positive
+		//finance calendar has to be instanced; expenditure >= 0
+		//financialcal != null
 		financialcal.addEvent(date, new Spendings(expenditure, date));
-		//adds expenditures to finance calendar
+		//expenditure has been added to finance calendar
 	}
 	
 	public void removeIncome(GregorianCalendar date, BigDecimal income) {
-		//band and finance calendar has to be instanced, income must be positive
+		//finance calendar has to be instanced; income >= 0
+		//financialcal != null
 		financialcal.removeEvent(date, new Earnings(income, date));
-		//removes income from the financial calendar
+		//income has been removed from financial calendar
 	}
 	
 	public void removeExpenditure(GregorianCalendar date, BigDecimal expenditure) {
-		//band and finance calendar has to be instanced, expenditure must be positive
+		//finance calendar has to be instanced; expenditure >= 0
+		//financialcal != null
 		financialcal.removeEvent(date, new Spendings(expenditure, date));
-		//removes expenditure from the financial calendar
+		//expenditure has been removed from financial calendar
 	}
 
 	public BigDecimal moneyGained(GregorianCalendar from, GregorianCalendar to) {
-		//band and finance calendar has to be instanced, from and to be a calendar date
+		//finance calendar has to be instanced; from is earlier than to
+		//financialcal != null
 		BigDecimal sum = new BigDecimal(0);
 		for(Earnings e : financialcal.getCalendarEvents(from, to, Earnings.class)) {
 			sum.add(e.getIncome());
@@ -171,7 +176,8 @@ public class Band {
 	}
 
 	public BigDecimal moneySpent(GregorianCalendar from, GregorianCalendar to) {
-		//band and finance calendar has to be instanced, from and to be a calendar date
+		//finance calendar has to be instanced; from is earlier than to
+		//financialcal != null
 		BigDecimal sum = new BigDecimal(0);
 		for(Spendings s : financialcal.getCalendarEvents(from, to, Spendings.class)) {
 				sum.add(s.getExpenditure());
@@ -181,7 +187,8 @@ public class Band {
 	}
 
 	public BigDecimal moneySituation(GregorianCalendar from, GregorianCalendar to) {
-		//band and finance calendar has to be instanced, from and to be a calendar date
+		//finance calendar has to be instanced; from is earlier than to
+		//financialcal != null
 		return moneyGained(from, to).subtract(moneySpent(from, to));
 		//returns the band's money situation
 	}
