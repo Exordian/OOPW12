@@ -10,9 +10,8 @@ import java.util.GregorianCalendar;
 public class Earnings extends Finances {
 	
 	public Earnings(BigDecimal income, GregorianCalendar date) {
-		// income should be positive, valid date
+		// valid date; income >= 0
 		super(income, date);
-		// returns Earnings instance
 	}
 
 	public BigDecimal getIncome() {

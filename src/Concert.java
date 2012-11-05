@@ -12,10 +12,9 @@ public class Concert extends MusicEvent {
 	private final BigDecimal salary;
 
 	public Concert(Location place, GregorianCalendar date, int duration, BigDecimal salary) {
-		// place, date, salary must not be null, duration and salary should be positive 
+		// (place, date, salary) != null; duration > 0; salary >= 0 
 		super(place, date, duration);
 		this.salary=salary;
-		// returns concert instance
 	}
 
 	public BigDecimal getSalary() {

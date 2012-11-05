@@ -12,10 +12,9 @@ public class Rehearsal extends MusicEvent {
 	private final BigDecimal rent;
 	
 	public Rehearsal(Location place, GregorianCalendar date, int duration, BigDecimal rent) {
-		// place and rent must not be null, date should be valid, duration should be positive, rent should be positive
+		// (place and rent) != null; valid date; duration > 0; rent >= 0
 		super(place, date, duration);
 		this.rent = rent;
-		// returns rehearsal instance
 	}
 	
 	public BigDecimal getRent() {

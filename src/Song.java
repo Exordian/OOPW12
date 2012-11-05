@@ -9,10 +9,9 @@ public class Song implements ICalendarEntry {
 	private final int duration;
 	
 	public Song(String title, int duration) {
-		// title should not be empty, duration should be over 0
+		// title != empty; duration > 0
 		this.title=title;
 		this.duration=duration;
-		// returns song instance
 	}
 	
 	public String getTitle() {

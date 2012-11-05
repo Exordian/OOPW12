@@ -15,25 +15,24 @@ public class Calendar {
 	
 	public Calendar(){
 		entries = new TreeMap<GregorianCalendar, CalendarEntry>();
-		// returns calendar instances
 	}
 
 	public void addEvent(GregorianCalendar date, ICalendarEntry entry){
-		// date and entry must not be null
+		// (date and entry) != null
 		entries.put(date, new CalendarEntry(CalendarEvent.EVENT_ADD, entry));		
-		// entry added to calendar
+		// entry has been added to calendar
 	}
 
 	public void changeEvent(GregorianCalendar date, ICalendarEntry oldevent, ICalendarEntry newevent){
-		// date, oldevent and newevent must not be null
+		// (date, oldevent and newevent) != null
 		entries.put(date, new CalendarEntry(CalendarEvent.EVENT_CHANGED, oldevent, newevent));		
-		// entry changed in calendar
+		// entry has been changed in calendar
 	}
 
 	public void removeEvent(GregorianCalendar date, ICalendarEntry entry){
-		// date and entry must not be null
+		// (date and entry) != null
 		entries.put(date, new CalendarEntry(CalendarEvent.EVENT_REMOVE, entry));		
-		// entry removed from calendar
+		// entry has been removed from calendar
 	}
 
 	private boolean checkDate(GregorianCalendar date, GregorianCalendar from, GregorianCalendar to) {
@@ -49,7 +48,7 @@ public class Calendar {
 
 	@SuppressWarnings("unchecked")
 	public <T extends ICalendarEntry> ArrayList<T> getCalendarEvents(GregorianCalendar from, GregorianCalendar to, Class<T> clazz) {
-		// clazz must not be null
+		// clazz != null
 		ArrayList<T> events = new ArrayList<T>();
 		for(Entry<GregorianCalendar, CalendarEntry> e : entries.entrySet()) {
 			if(checkDate(e.getKey(), from, to))

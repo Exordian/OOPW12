@@ -11,12 +11,11 @@ public class Location {
 	private boolean rehearsals;
 	
 	public Location(String name, int capacity, boolean concerts, boolean rehearsals) {
-		// name must not be null and should not be empty, capacity should be positive, concerts or rehearsals - at least one of them should be true
+		// name != (null or empty); capacity >= positive; concerts or rehearsals - at least one of them is true
 		this.name = name;
 		this.capacity = capacity;
 		this.concerts = concerts;
 		this.rehearsals = rehearsals;
-		// returns location instance
 	}
 	
 	public String getName() {

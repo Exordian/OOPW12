@@ -13,7 +13,7 @@ public class Finances implements ICalendarEntry {
 	private final GregorianCalendar date;
 	
 	public Finances(BigDecimal amount, GregorianCalendar date) {
-		// date must be valid and amount should be positive
+		// valid date; amount >= 0
 		this.amount = amount;
 		this.date = date;
 		// returns Finances instance

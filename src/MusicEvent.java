@@ -13,11 +13,10 @@ abstract public class MusicEvent implements ICalendarEntry {
 	private final int duration;
 	
 	public MusicEvent(Location place, GregorianCalendar date, int duration) {
-		// place should not be null, date should be valid, duration should be positive
+		// place != null; valid date; duration > 0
 		this.place=place;
 		this.date=date;
 		this.duration=duration;
-		// returns music event
 	}
 	
 	public String getPlace() {
