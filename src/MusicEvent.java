@@ -8,6 +8,7 @@ import java.util.GregorianCalendar;
  * 
  */
 abstract public class MusicEvent implements ICalendarEntry {
+	// place != null
 	private final Location place;
 	private final GregorianCalendar date;
 	// duration > 0

@@ -10,8 +10,11 @@ import java.util.GregorianCalendar;
 public class Member implements ICalendarEntry {
 	// cal != null
 	private Calendar cal;
+	// name != null
 	private final String name;
+	// tel != null
 	private final String tel;
+	// instrument != null
 	private final String instrument;
 	private boolean permanent;
 	

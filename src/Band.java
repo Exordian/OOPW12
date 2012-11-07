@@ -12,12 +12,14 @@ public class Band {
 	// cal, financialcal != null
 	private Calendar cal;
 	private Calendar financialcal;
+	// bandName != null
 	private String bandName ="";
 	private ArrayList<Location> locationList = new ArrayList<Location>();
 	// memberCount >= 0
 	private int memberCount = 0;
 	
 	public Band(String bandName){
+		// BandName != null
 		cal = new Calendar();
 		financialcal = new Calendar();
 		this.bandName = bandName;

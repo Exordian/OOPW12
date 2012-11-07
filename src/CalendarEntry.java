@@ -7,6 +7,7 @@
 public class CalendarEntry {
 	private final CalendarEvent event;
 	private final ICalendarEntry entry;
+	// prevEntry != only if event = EVENT_CHANGED
 	private final ICalendarEntry prevEntry;
 	
 
