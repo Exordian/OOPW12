@@ -9,6 +9,7 @@ import java.util.GregorianCalendar;
  * 
  */
 public class Rehearsal extends MusicEvent {
+	// rent >= 0
 	private final BigDecimal rent;
 	
 	public Rehearsal(Location place, GregorianCalendar date, int duration, BigDecimal rent) {
@@ -18,7 +19,6 @@ public class Rehearsal extends MusicEvent {
 	}
 	
 	public BigDecimal getRent() {
-		// rent has to be initialized
 		return this.rent;
 		// returns stored rent
 	}

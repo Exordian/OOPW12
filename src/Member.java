@@ -8,6 +8,7 @@ import java.util.GregorianCalendar;
  * 
  */
 public class Member implements ICalendarEntry {
+	// cal != null
 	private Calendar cal;
 	private final String name;
 	private final String tel;

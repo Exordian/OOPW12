@@ -6,6 +6,7 @@
  */
 public class Song implements ICalendarEntry {
 	private final String title;
+	// duration > 0
 	private final int duration;
 	
 	public Song(String title, int duration) {
@@ -15,19 +16,16 @@ public class Song implements ICalendarEntry {
 	}
 	
 	public String getTitle() {
-		// title has to be initialized
 		return this.title;
 		// returns stored title
 	}
 	
 	public int getDuration() {
-		// duration has to be initialized
 		return this.duration;
 		// returns stored duration
 	}
 	
 	public String toString() {
-		// title, duration had to be set
 		return this.title + " (" + this.duration + " sec)";
 		// returns song in a readable string
 	}	

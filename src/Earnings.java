@@ -15,7 +15,6 @@ public class Earnings extends Finances {
 	}
 
 	public BigDecimal getIncome() {
-		// amount has to be initialized
 		return this.amount;
 		// returns stored amount
 	}

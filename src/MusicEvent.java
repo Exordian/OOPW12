@@ -10,6 +10,7 @@ import java.util.GregorianCalendar;
 abstract public class MusicEvent implements ICalendarEntry {
 	private final Location place;
 	private final GregorianCalendar date;
+	// duration > 0
 	private final int duration;
 	
 	public MusicEvent(Location place, GregorianCalendar date, int duration) {
@@ -20,13 +21,11 @@ abstract public class MusicEvent implements ICalendarEntry {
 	}
 	
 	public String getPlace() {
-		// place has to be initialized
 		return this.place.getName();
 		// returns place name
 	}
 
 	public GregorianCalendar getDate() {
-		// date has to be initialized
 		return this.date;		
 		// returns stored date
 	}
@@ -34,7 +33,6 @@ abstract public class MusicEvent implements ICalendarEntry {
 	abstract public BigDecimal getTurnover();
 	
 	public int getDuration() {
-		// duration has to be initialized
 		return this.duration;		
 		// returns stored duration
 	}

@@ -5,8 +5,10 @@
  * 
  */
 public class Location {
-	private String name ="";
-	private int capacity = 0;
+	private String name;
+	// capacity > 0
+	private int capacity;
+	// concerts or rehearsals should be true
 	private boolean concerts;
 	private boolean rehearsals;
 	

@@ -9,12 +9,12 @@ import java.util.GregorianCalendar;
  * 
  */
 public class Band {
-	// atm all events are stored in one single calendar, 
-	// if this calendar gets too big, it should be splitted into one calendar per event -> partly doen with financial calendar
+	// cal, financialcal != null
 	private Calendar cal;
 	private Calendar financialcal;
 	private String bandName ="";
 	private ArrayList<Location> locationList = new ArrayList<Location>();
+	// memberCount >= 0
 	private int memberCount = 0;
 	
 	public Band(String bandName){
@@ -29,49 +29,43 @@ public class Band {
 	}
 	
 	public void addMember(GregorianCalendar date, Member member) {
-		//calendar, member have to be instanced; memberCount >= 0
-		//cal != null
+		// date != null, member != null
 		this.memberCount++;
 		cal.addEvent(date, member);
 		//member has been added to calendar and member count has been incremented
 	}
 	
 	public void removeMember(GregorianCalendar date, Member member) {
-		//calendar, member have to be instanced; memberCount >= 0
-		//cal != null
+		// date != null, member != null, memberCount > 0
 		this.memberCount--;
 		cal.removeEvent(date, member);
 		//member has been removed from calender and member count has been decremented
 	}
 
 	public int numberOfMembers(){
-		//memberCount has to be initialized, therefore a instance of band must exist
-		return this.memberCount; //memberCount >= 0
+		return this.memberCount;
 		//returns member count
 	}
 	
 	public ArrayList<Member> getMembers(GregorianCalendar date) {
-		//calendar, member have to be instanced
-		//cal != null
 		return cal.getCalendarEvents(null, date, Member.class);
 		//neither of the elements is null
 		//returns an ArrayList with the members of the band on a specific date
 	}
 	
 	public void changeMemberStatus(Member member) {
-		//member has to be instanced
 		member.changeStatus();
 		//member status has been changed either to PermMember or to TempMember
 	}
 
 	public void addLocation(Location loc) {
-		//location has to be instanced
+		//loc != null
 		this.locationList.add(loc);
 		//location which is available to bands has been added
 	}
 	
 	public ArrayList<Location> findLocation(int capacity) {
-		//location has to be instanced; capacity has to be initialized
+		// capacity > 0
 		ArrayList<Location> temp = new ArrayList<Location>();
 		for (Location l : this.locationList) {
 			//locationList has to exist
@@ -83,8 +77,7 @@ public class Band {
 	}
 	
 	public void addMusicEvent(GregorianCalendar date, MusicEvent event) {
-		//calendar, musicEvent have to be instanced
-		//cal != null, financialcal != 0
+		// date != null, musicEvent != null
 		cal.addEvent(date, event);
 		for(Member m : getMembers(date)) {
 			m.inform("New Event: " + event);
@@ -97,8 +90,7 @@ public class Band {
 	}
 
 	public void changeMusicEvent(GregorianCalendar date, MusicEvent oldevent, MusicEvent newevent) {
-		//calendar, musicEvent have to be instanced
-		//cal != null, financialcal != 0
+		// date != null, oldevent != null, newevent != null
 		if (oldevent.getTurnover().doubleValue() > 0) {
 			this.removeIncome(date, oldevent.getTurnover());
 			this.addIncome(date, newevent.getTurnover());
@@ -114,8 +106,7 @@ public class Band {
 	}
 	
 	public void removeMusicEvent(GregorianCalendar date, MusicEvent event) {
-		//calendar, musicEvent have to be instanced
-		//cal != null
+		// date != null, musicEvent != null
 		if (event.getTurnover().doubleValue() > 0) {
 			this.removeIncome(date, event.getTurnover());
 		} else {
@@ -130,43 +121,35 @@ public class Band {
 	}
 	
 	public ArrayList<MusicEvent> getMusicEvents(GregorianCalendar from, GregorianCalendar to) {
-		//calendar, musicEvent have to be instanced
-		//cal != null
 		return cal.getCalendarEvents(from, to, MusicEvent.class);
 		//returns music events from a specific time to a specific time
 	}
 
 	public void addIncome(GregorianCalendar date, BigDecimal income) {
-		//finance calendar has to be instanced; income >= 0
-		//financialcal != null
+		//date ! = null; income >= 0
 		financialcal.addEvent(date, new Earnings(income, date));
 		//income has been added to finance calendar
 	}
 	
 	public void addExpenditure(GregorianCalendar date, BigDecimal expenditure) {
-		//finance calendar has to be instanced; expenditure >= 0
-		//financialcal != null
+		//date ! = null; income >= 0
 		financialcal.addEvent(date, new Spendings(expenditure, date));
 		//expenditure has been added to finance calendar
 	}
 	
 	public void removeIncome(GregorianCalendar date, BigDecimal income) {
-		//finance calendar has to be instanced; income >= 0
-		//financialcal != null
+		//date ! = null; income >= 0
 		financialcal.removeEvent(date, new Earnings(income, date));
 		//income has been removed from financial calendar
 	}
 	
 	public void removeExpenditure(GregorianCalendar date, BigDecimal expenditure) {
-		//finance calendar has to be instanced; expenditure >= 0
-		//financialcal != null
+		//date ! = null; income >= 0
 		financialcal.removeEvent(date, new Spendings(expenditure, date));
 		//expenditure has been removed from financial calendar
 	}
 
 	public BigDecimal moneyGained(GregorianCalendar from, GregorianCalendar to) {
-		//finance calendar has to be instanced; from is earlier than to
-		//financialcal != null
 		BigDecimal sum = new BigDecimal(0);
 		for(Earnings e : financialcal.getCalendarEvents(from, to, Earnings.class)) {
 			sum.add(e.getIncome());
@@ -176,8 +159,6 @@ public class Band {
 	}
 
 	public BigDecimal moneySpent(GregorianCalendar from, GregorianCalendar to) {
-		//finance calendar has to be instanced; from is earlier than to
-		//financialcal != null
 		BigDecimal sum = new BigDecimal(0);
 		for(Spendings s : financialcal.getCalendarEvents(from, to, Spendings.class)) {
 				sum.add(s.getExpenditure());
@@ -187,8 +168,6 @@ public class Band {
 	}
 
 	public BigDecimal moneySituation(GregorianCalendar from, GregorianCalendar to) {
-		//finance calendar has to be instanced; from is earlier than to
-		//financialcal != null
 		return moneyGained(from, to).subtract(moneySpent(from, to));
 		//returns the band's money situation
 	}

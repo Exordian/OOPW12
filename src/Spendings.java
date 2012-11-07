@@ -15,7 +15,6 @@ public class Spendings extends Finances {
 	}
 	
 	public BigDecimal getExpenditure() {
-		// amount has to be initialized
 		return this.amount;
 		// returns stored amount
 	}

@@ -20,6 +20,8 @@ public class Test {
 		 GOOD: calendar and band are fully independent
 		 GOOD: visibility modifications used properly
 		 ERROR: song should list a group of members which are required to play the song instead of adding songs to only one member
+		 
+		 comments starting with retruns could be obvious due to the return statement
 		 */
 		
 		
@@ -162,6 +164,7 @@ public class Test {
 		
 		
 	}
+
 	public static String forWhat(Location l) {
 		if (l.forConcerts() && l.forRehearsals()) {
 			return "Available for concerts and rehearsals.";

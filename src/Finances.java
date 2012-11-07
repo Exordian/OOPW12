@@ -8,7 +8,7 @@ import java.util.GregorianCalendar;
  * 
  */
 public class Finances implements ICalendarEntry {
-	
+	// amount >= 0
 	protected final BigDecimal amount;
 	private final GregorianCalendar date;
 	
@@ -20,13 +20,11 @@ public class Finances implements ICalendarEntry {
 	}
 	
 	public GregorianCalendar getDate() {
-		// date has to be initialized
 		return this.date;
 		// returns stored date
 	}
 	
 	public BigDecimal getAmount() {
-		// amount has to be initialized
 		return this.amount;
 		// returns stored amount
 	}
